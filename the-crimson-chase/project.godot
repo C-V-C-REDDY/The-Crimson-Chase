@@ -12,4 +12,7 @@ config_version=5
 
 config/name="The-Crimson-Chase"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.00069389754, 0.0006938977, 0.0006938973, 1)
