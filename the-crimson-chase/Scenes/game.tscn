@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=3 format=3 uid="uid://cdlxaqt5j2hvj"]
+
+[ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://73mq0c4ckedp" path="res://Scenes/world.tscn" id="2_qxrlw"]
 
 [node name="Game" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+
+[node name="World" parent="." instance=ExtResource("2_qxrlw")]
+position = Vector2(-78, -44)
