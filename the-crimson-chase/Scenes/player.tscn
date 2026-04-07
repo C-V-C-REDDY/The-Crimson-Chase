@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtqd3qgudh5uc"]
 
 [ext_resource type="Script" uid="uid://dj66qok6atvnc" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dpett7s2p86p7" path="res://Assets/sprites/Gemini_Generated_Image_aan299aan299aan2-removebg-preview.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://dpett7s2p86p7" path="res://Assets/sprites/MC.png" id="1_v0iea"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 

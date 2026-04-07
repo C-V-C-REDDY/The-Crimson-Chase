@@ -1,10 +1,13 @@
 extends CharacterBody2D
 @onready var anim_player: AnimationPlayer = $PlayerAnimation
+@onready var pooring: Node2D = $"../Pooring"
+
 
 const SPEED = 200.0
 
 func _ready() -> void:
 	anim_player.play("idle")
+	pooring.follow_target = self
 
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
