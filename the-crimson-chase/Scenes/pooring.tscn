@@ -1,7 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://dci038p5081w4"]
+[gd_scene load_steps=7 format=3 uid="uid://dci038p5081w4"]
 
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="1_a1doh"]
 [ext_resource type="Script" uid="uid://diareu38cckj7" path="res://Scripts/pooring.gd" id="1_nv454"]
+
+[sub_resource type="Animation" id="Animation_d8q04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.07, 0.07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_nv454"]
 resource_name = "idle"
@@ -19,25 +46,39 @@ tracks/0/keys = {
 "values": [Vector2(0.07, 0.07), Vector2(0.07, 0.05)]
 }
 
-[sub_resource type="Animation" id="Animation_d8q04"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_r12qn"]
+resource_name = "walk"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.07, 0.07)]
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.07, 0.05), Vector2(0.05, 0.07), Vector2(0.07, 0.05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r12qn"]
 _data = {
 &"RESET": SubResource("Animation_d8q04"),
-&"idle": SubResource("Animation_nv454")
+&"idle": SubResource("Animation_nv454"),
+&"walk": SubResource("Animation_r12qn")
 }
 
 [node name="Pooring" type="Node2D"]

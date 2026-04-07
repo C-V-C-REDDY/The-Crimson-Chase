@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://mtqr8wgrfa46"]
+
+[ext_resource type="Script" uid="uid://bqmbwgmf3bfxe" path="res://Scripts/key.gd" id="1_udxw8"]
+[ext_resource type="Texture2D" uid="uid://dmlcxabycgv7k" path="res://Assets/sprites/Key.png" id="2_brn0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc1k7"]
+size = Vector2(462, 186)
+
+[sub_resource type="Animation" id="Animation_58hov"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50.09), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.3403393, 0.34033933, 0.3403393, 1), Color(1, 1, 1, 1), Color(0.3403393, 0.3403393, 0.3403393, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qvjb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.3403393, 0.34033933, 0.3403393, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20akx"]
+_data = {
+&"RESET": SubResource("Animation_qvjb5"),
+&"idle": SubResource("Animation_58hov")
+}
+
+[node name="Key" type="Area2D"]
+rotation = 0.43633232
+scale = Vector2(0.07, 0.07)
+script = ExtResource("1_udxw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.3403393, 0.34033933, 0.3403393, 1)
+texture = ExtResource("2_brn0f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_lc1k7")
+
+[node name="KeyAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_20akx")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

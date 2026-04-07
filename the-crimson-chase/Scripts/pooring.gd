@@ -7,7 +7,7 @@ var follow_speed = 175.0
 var follow_distance = 30
 
 func _ready() -> void:
-	%PooringAnimation.play("idle")
+	%PooringAnimation.play("walk")
 
 
 func _process(delta: float) -> void:
