@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=6 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://73mq0c4ckedp" path="res://Scenes/world.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://dci038p5081w4" path="res://Scenes/pooring.tscn" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://cxvkjhyvnbx25" path="res://Scenes/safe_zone.tscn" id="5_wowpa"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_3dryh")
@@ -81,6 +82,9 @@ offset_right = 611.0
 offset_bottom = 268.0
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
+
+[node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
+position = Vector2(86, 81)
 
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_button_pressed"]

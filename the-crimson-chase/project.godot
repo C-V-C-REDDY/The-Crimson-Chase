@@ -14,6 +14,10 @@ config/name="The-Crimson-Chase"
 run/main_scene="uid://cdlxaqt5j2hvj"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+Game="*res://Scripts/game.gd"
+
 [input]
 
 ui_left={

@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxvkjhyvnbx25"]
+
+[ext_resource type="Script" uid="uid://c8g6pychhuncm" path="res://Scripts/safe_zone.gd" id="1_jwd3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wn0fk"]
+size = Vector2(110, 233)
+
+[sub_resource type="Animation" id="Animation_jwd3t"]
+resource_name = "warning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hs7xa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oplpq"]
+_data = {
+&"RESET": SubResource("Animation_hs7xa"),
+&"warning": SubResource("Animation_jwd3t")
+}
+
+[node name="SafeZone" type="Area2D"]
+script = ExtResource("1_jwd3t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(-75, -75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -117.0
+offset_right = 56.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.31059268, 0.26294705, 0.24705882)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0.5)
+shape = SubResource("RectangleShape2D_wn0fk")
+
+[node name="Warning" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_oplpq")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

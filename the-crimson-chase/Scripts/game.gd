@@ -8,6 +8,7 @@ var max_keys = 10
 var spawn_timer = 30.0
 var game_timer = 600.0
 var current_key = null
+var is_player_safe: bool = false
 
 func _ready() -> void:
 	spawn_key()
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 	if game_timer <= 0:
 		game_over()
 	
-	if spawn_timer <= 0:
+	if spawn_timer <= 0 and current_key == null:
 		spawn_key()
 
 
@@ -40,6 +41,7 @@ func spawn_key():
 func _on_key_collected():
 	keys_collected += 1
 	current_key = null
+	spawn_timer = 30.0
 	if keys_collected >= max_keys:
 		win()
 	else:
