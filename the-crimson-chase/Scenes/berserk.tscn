@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://d3xmdjo6jnf37" path="res://Scripts/berserk.gd" id="1_ujq7v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ujq7v"]
-radius = 44.0
-height = 102.0
+radius = 29.0
+height = 84.0
 
 [sub_resource type="Animation" id="Animation_ryfvr"]
 resource_name = "walk"
@@ -46,10 +46,10 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8s75f"]
-radius = 48.0
-height = 108.0
+radius = 53.0
+height = 116.0
 
-[node name="Berserk" type="CharacterBody2D"]
+[node name="Berserk" type="CharacterBody2D" groups=["berserk"]]
 script = ExtResource("1_ujq7v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

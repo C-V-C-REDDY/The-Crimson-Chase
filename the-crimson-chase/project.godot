@@ -21,6 +21,7 @@ Global="*res://Scripts/global.gd"
 [global_group]
 
 player=""
+berserk=""
 
 [input]
 

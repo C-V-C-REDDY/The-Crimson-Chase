@@ -102,10 +102,10 @@ offset_bottom = 23.0
 
 [node name="LivesDisplay" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 903.0
-offset_top = 1.0000038
-offset_right = 2576.0
-offset_bottom = 450.0
+offset_left = -5.9999995
+offset_top = -4.0
+offset_right = 1667.0
+offset_bottom = 445.0
 scale = Vector2(0.1, 0.1)
 
 [node name="Heart1" type="TextureRect" parent="CanvasLayer/LivesDisplay"]
@@ -123,6 +123,53 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
+[node name="EmberPrompt" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/EmberPrompt"]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 7.0
+offset_right = 367.0
+offset_bottom = 47.0
+
+[node name="Label" type="Label" parent="CanvasLayer/EmberPrompt/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -517.0
+offset_top = -2.0
+offset_right = -257.0
+offset_bottom = 21.0
+grow_horizontal = 2
+text = "Claim Ember? Berserk gets faster!"
+
+[node name="YesBtn" type="Button" parent="CanvasLayer/EmberPrompt/Panel"]
+layout_mode = 0
+offset_left = -442.0
+offset_top = 28.0
+offset_right = -407.0
+offset_bottom = 59.0
+text = "Yes"
+
+[node name="NoBtn" type="Button" parent="CanvasLayer/EmberPrompt/Panel"]
+layout_mode = 0
+offset_left = -361.0
+offset_top = 31.0
+offset_right = -330.0
+offset_bottom = 62.0
+text = "No"
+
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(93, 123)
 
@@ -132,3 +179,5 @@ position = Vector2(719, 113)
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/LoseRestart" to="." method="_on_lose_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/EmberPrompt/Panel/YesBtn" to="." method="_on_yes_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/EmberPrompt/Panel/NoBtn" to="." method="_on_no_btn_pressed"]
