@@ -42,8 +42,9 @@ func shift_zone():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Game.is_player_safe = true
+		Global.is_player_safe = true
+
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Game.is_player_safe = false
+		Global.is_player_safe = false

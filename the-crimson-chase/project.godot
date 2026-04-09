@@ -16,7 +16,11 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-Game="*res://Scripts/game.gd"
+Global="*res://Scripts/global.gd"
+
+[global_group]
+
+player=""
 
 [input]
 

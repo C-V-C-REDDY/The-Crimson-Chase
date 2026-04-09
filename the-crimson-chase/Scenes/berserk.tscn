@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://ekwthyoqcprx"]
+
+[ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="1_ptb3l"]
+[ext_resource type="Script" uid="uid://d3xmdjo6jnf37" path="res://Scripts/berserk.gd" id="1_ujq7v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ujq7v"]
+radius = 44.0
+height = 102.0
+
+[sub_resource type="Animation" id="Animation_ryfvr"]
+resource_name = "walk"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2sj64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s87ir"]
+_data = {
+&"RESET": SubResource("Animation_2sj64"),
+&"walk": SubResource("Animation_ryfvr")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8s75f"]
+radius = 48.0
+height = 108.0
+
+[node name="Berserk" type="CharacterBody2D"]
+script = ExtResource("1_ujq7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ptb3l")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -34)
+shape = SubResource("CapsuleShape2D_ujq7v")
+
+[node name="BersekWalk" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_s87ir")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(5, -34)
+shape = SubResource("CapsuleShape2D_8s75f")
+debug_color = Color(0.8774744, 0.29814726, 0.44238895, 0.41960785)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
