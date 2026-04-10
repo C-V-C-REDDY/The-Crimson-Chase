@@ -10,7 +10,8 @@ var slow_unlocked = false
 var slow_cooldown = 10.0
 var slow_timer = 0.0
 var is_slowing = false
-
+var lair_position = Vector2(900, 80)
+var is_retreating = false
 
 func _ready() -> void:
 	%BersekWalk.play("walk")
@@ -19,6 +20,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_retreating:
+		return
 	game_timer_ref -= delta
 	
 	if game_timer_ref <= 30.0:
@@ -58,12 +61,22 @@ func activate_slow():
 	player.speed = original_speed
 	is_slowing = false
 
+var hit_cooldown = false
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		if hit_cooldown:
+			return
+		hit_cooldown = true
 		print("hit detected, parent is:", get_parent().name)
 		get_parent().lose_life()
-	var original_speed = speed
-	speed = original_speed * 0.1
+		retreat_to_lair()
+		await get_tree().create_timer(0.1).timeout
+		hit_cooldown = false
+
+
+func retreat_to_lair():
+	is_retreating = true
+	global_position = lair_position
 	await get_tree().create_timer(2.0).timeout
-	speed = original_speed
+	is_retreating = false

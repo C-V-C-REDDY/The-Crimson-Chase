@@ -6,11 +6,11 @@ var max_keys = 2
 var spawn_timer = 30.0
 var game_timer = 600.0
 var current_key = null
-var lives = Global.lives
 var ember_speed_boost = 20.0
 var next_ember_threshold = 5
 var ember_scene = preload("res://Scenes/ember.tscn")
 var invincible = false
+@onready var camera = $Player/Camera2D
 
 func _ready() -> void:
 	spawn_key()
@@ -67,20 +67,25 @@ func game_over():
 
 func _on_restart_pressed() -> void:
 	get_tree().paused = false
+	Global.reset()
 	get_tree().reload_current_scene()
 
 
 func _on_lose_restart_pressed() -> void:
 	get_tree().paused = false
+	Global.reset()
 	get_tree().reload_current_scene()
 
 
 func lose_life():
+	if Global.lives <= 0:
+		return
 	if invincible:
 		return
 	invincible = true
 	print("lives before:", Global.lives)
 	Global.lives -= 1
+	screen_shake(8.0, 0.3)
 	print("lives after:", Global.lives)
 	if Global.lives == 2:
 		%Heart3.visible = false
@@ -93,9 +98,10 @@ func lose_life():
 	invincible = false
 
 
-func _on_player_hit():
-	if not Global.is_player_safe:
-		lose_life()
+
+#func _on_player_hit():
+	#if not Global.is_player_safe:
+		#lose_life()
 
 
 func _on_yes_btn_pressed() -> void:
@@ -142,7 +148,7 @@ func apply_heal():
 			1:
 				%Heart1.visible = true
 			2:
-				%Heart2.visble = true
+				%Heart2.visbile = true
 			3:
 				%Heart3.visible = true
 
@@ -159,3 +165,12 @@ func apply_speed_boost():
 	player.speed = original_speed * 2.0
 	await get_tree().create_timer(10.0).timeout
 	player.speed = original_speed
+
+
+func screen_shake(amount: float, duration: float):
+	var timer = duration
+	while timer > 0:
+		camera.offset = Vector2(randf_range(-amount, amount), randf_range(-amount, amount))
+		timer -= get_process_delta_time()
+		await get_tree().process_frame
+	camera.offset = Vector2.ZERO
