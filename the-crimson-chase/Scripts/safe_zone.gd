@@ -35,6 +35,7 @@ func shift_zone():
 	shift_timer = 0.0
 	warning_given = false
 	%Warning.stop()
+	get_tree().get_root().get_node("Game").show_toast("Safe Zone Warning!!!")
 	var new_pos = spawn_positions[randi() % spawn_positions.size()]
 	global_position = new_pos
 	emit_signal("zone_shifted")

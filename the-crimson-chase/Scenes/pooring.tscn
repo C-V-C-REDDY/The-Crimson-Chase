@@ -88,6 +88,15 @@ script = ExtResource("1_nv454")
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("1_a1doh")
 
+[node name="Trail" type="CPUParticles2D" parent="Sprite2D"]
+modulate = Color(0.856017, 0.00023196616, 0.027491516, 1)
+position = Vector2(42.857143, -128.57143)
+scale = Vector2(14.285714, 14.285714)
+amount = 5
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector2(100, 50)
+
 [node name="PooringAnimation" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {

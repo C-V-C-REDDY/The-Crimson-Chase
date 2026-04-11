@@ -57,6 +57,7 @@ func activate_slow():
 	var original_speed = player.speed
 	player.speed = original_speed * 0.4
 	print("Berserk activated slow!")
+	get_tree().get_root().get_node("Game").show_toast("Berserk's Skill Activated!")
 	await get_tree().create_timer(3.0).timeout
 	player.speed = original_speed
 	is_slowing = false

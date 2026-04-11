@@ -22,6 +22,8 @@ Global="*res://Scripts/global.gd"
 
 player=""
 berserk=""
+game=""
+hud=""
 
 [input]
 

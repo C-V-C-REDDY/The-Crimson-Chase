@@ -7,10 +7,24 @@ var spawn_timer = 30.0
 var game_timer = 600.0
 var current_key = null
 var ember_speed_boost = 20.0
-var next_ember_threshold = 5
-var ember_scene = preload("res://Scenes/ember.tscn")
 var invincible = false
 @onready var camera = $Player/Camera2D
+var ember_pooring_scene = preload("res://Scenes/ember_pooring.tscn")
+var ember_timer = 60.0
+var ember_elapsed = 0.0
+var toast_offset = 0
+var safe_spawn_points = [
+	Vector2(200, 300),
+	Vector2(400, 200),
+	Vector2(600, 400),
+	Vector2(800, 300),
+	Vector2(300, 500),
+	Vector2(700, 150),
+	Vector2(500, 500),
+	Vector2(150, 450),
+	Vector2(900, 400),
+	Vector2(450, 350),
+]
 
 func _ready() -> void:
 	spawn_key()
@@ -18,7 +32,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	game_timer -= delta
 	spawn_timer -= delta
-	
+	ember_elapsed += delta
+	if ember_elapsed >= ember_timer:
+		ember_elapsed = 0.0
+		_spawn_ember_pooring()
 	if game_timer <= 0:
 		game_over()
 	
@@ -26,29 +43,32 @@ func _process(delta: float) -> void:
 		spawn_key()
 
 
+func _spawn_ember_pooring():
+	var ep = ember_pooring_scene.instantiate()
+	ep.global_position = _random_floor_position()
+	ep.ember_claimed.connect(_on_ember_claimed)
+	call_deferred("add_child", ep)
+	show_toast("Elite Pooring Spawned!")
+
+
+func _on_ember_claimed():
+	berserk_speed_up()
+	var roll = randi() % 3
+	match roll:
+		0: apply_heal() 
+		1: apply_stealth()
+		2: apply_speed_boost()
+
+
+
 func spawn_key():
 	if current_key != null:
 		current_key.queue_free()
 	var key = key_scene.instantiate()
-	var rand_x = randf_range(100, 1000)
-	var rand_y = randf_range(50, 600)
-	key.global_position = Vector2(rand_x, rand_y)
-	key.key_collected.connect(_on_key_collected)
-	add_child(key)
+	key.global_position = _random_floor_position()
+	call_deferred("add_child", key)
 	current_key = key
 	spawn_timer = 30.0
-
-
-func _on_key_collected():
-	keys_collected += 1
-	current_key = null
-	spawn_timer = 30.0
-	if keys_collected >= next_ember_threshold:
-		next_ember_threshold += 5
-		get_tree().paused = true
-		%EmberPrompt.visible = true
-	else:
-		spawn_key()
 
 
 func win():
@@ -85,13 +105,17 @@ func lose_life():
 	invincible = true
 	print("lives before:", Global.lives)
 	Global.lives -= 1
+	show_toast("- Heart !")
 	screen_shake(8.0, 0.3)
 	print("lives after:", Global.lives)
 	if Global.lives == 2:
+		%LivesAnim.play("H1")
 		%Heart3.visible = false
 	elif Global.lives == 1:
+		%LivesAnim.play("H2")
 		%Heart2.visible = false
 	elif Global.lives == 0:
+		%LivesAnim.play("H3")
 		%Heart1.visible = false
 		game_over()
 	await get_tree().create_timer(2.0).timeout
@@ -99,67 +123,38 @@ func lose_life():
 
 
 
-#func _on_player_hit():
-	#if not Global.is_player_safe:
-		#lose_life()
-
-
-func _on_yes_btn_pressed() -> void:
-	%EmberPrompt.visible = false
-	get_tree().paused = false
-	spawn_ember()
-	berserk_speed_up()
-	spawn_key()
-
-func spawn_ember():
-	var ember = ember_scene.instantiate()
-	var player = get_tree().get_first_node_in_group("player")
-	ember.global_position = Vector2(
-		player.global_position.x + randf_range(-80, 80),
-		player.global_position.y + randf_range(-80, 80)
-	)
-	ember.ember_collected.connect(_on_ember_collected)
-	add_child(ember)
-
-func _on_ember_collected():
-	var buff = randi() % 3
-	match  buff:
-		0: apply_heal()
-		1: apply_stealth()
-		2: apply_speed_boost()
-
-
-func _on_no_btn_pressed() -> void:
-	%EmberPrompt.visible = false
-	get_tree().paused = false
-	spawn_key()
-
-
 func berserk_speed_up():
+	show_toast("Berserk Speed Up!!")
 	var berserk = get_tree().get_first_node_in_group("berserk")
 	if berserk:
 		berserk.speed += ember_speed_boost
 
 
 func apply_heal():
+	show_toast("Healed!")
 	if Global.lives < 3:
 		Global.lives += 1
 		match Global.lives:
 			1:
 				%Heart1.visible = true
 			2:
-				%Heart2.visbile = true
+				%Heart2.visible = true
 			3:
 				%Heart3.visible = true
 
+func _random_floor_position() -> Vector2:
+	return safe_spawn_points[randi() % safe_spawn_points.size()]
+
 
 func apply_stealth():
+	show_toast("Stealth Mode!")
 	Global.is_player_safe = true
 	await get_tree().create_timer(10.0).timeout
 	Global.is_player_safe = false
 
 
 func apply_speed_boost():
+	show_toast("Speed Boost!")
 	var player = get_tree().get_first_node_in_group("player")
 	var original_speed = player.speed
 	player.speed = original_speed * 2.0
@@ -174,3 +169,18 @@ func screen_shake(amount: float, duration: float):
 		timer -= get_process_delta_time()
 		await get_tree().process_frame
 	camera.offset = Vector2.ZERO
+
+
+func show_toast(message: String):
+	var label = Label.new()
+	label.text = message
+	label.position = Vector2(500, 250 + toast_offset)
+	get_tree().get_first_node_in_group("hud").add_child(label)
+	toast_offset += 25
+	
+	var tween = create_tween()
+	tween.tween_property(label, "position:y", label.position.y -40, 0.9)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 0.9)
+	await tween.finished
+	label.queue_free()
+	toast_offset -= 25

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=13 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -8,7 +8,138 @@
 [ext_resource type="PackedScene" uid="uid://cxvkjhyvnbx25" path="res://Scenes/safe_zone.tscn" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://ekwthyoqcprx" path="res://Scenes/berserk.tscn" id="7_1l0tm"]
 
-[node name="Game" type="Node"]
+[sub_resource type="Animation" id="Animation_1l0tm"]
+resource_name = "H1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_v158k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h4fw4"]
+resource_name = "H2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ldgsr"]
+resource_name = "H3"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5yvi"]
+_data = {
+&"H1": SubResource("Animation_1l0tm"),
+&"H2": SubResource("Animation_h4fw4"),
+&"H3": SubResource("Animation_ldgsr"),
+&"RESET": SubResource("Animation_v158k")
+}
+
+[node name="Game" type="Node" groups=["game"]]
 script = ExtResource("1_3dryh")
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
@@ -22,7 +153,7 @@ position = Vector2(-78, -44)
 position = Vector2(512, 306)
 scale = Vector2(0.5, 0.5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["hud"]]
 
 [node name="Win" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -124,63 +255,18 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
-[node name="EmberPrompt" type="Control" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer/EmberPrompt"]
-layout_mode = 0
-offset_left = 327.0
-offset_top = 7.0
-offset_right = 367.0
-offset_bottom = 47.0
-
-[node name="Label" type="Label" parent="CanvasLayer/EmberPrompt/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -517.0
-offset_top = -2.0
-offset_right = -257.0
-offset_bottom = 21.0
-grow_horizontal = 2
-text = "Claim Ember? Berserk gets faster!"
-
-[node name="YesBtn" type="Button" parent="CanvasLayer/EmberPrompt/Panel"]
-process_mode = 3
-layout_mode = 0
-offset_left = -442.0
-offset_top = 28.0
-offset_right = -407.0
-offset_bottom = 59.0
-text = "Yes"
-
-[node name="NoBtn" type="Button" parent="CanvasLayer/EmberPrompt/Panel"]
-process_mode = 3
-layout_mode = 0
-offset_left = -361.0
-offset_top = 31.0
-offset_right = -330.0
-offset_bottom = 62.0
-text = "No"
-
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(93, 123)
 
 [node name="Berserk" parent="." instance=ExtResource("7_1l0tm")]
 position = Vector2(1014, 80)
 
+[node name="LivesAnim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_o5yvi")
+}
+
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/LoseRestart" to="." method="_on_lose_restart_pressed"]
-[connection signal="pressed" from="CanvasLayer/EmberPrompt/Panel/YesBtn" to="." method="_on_yes_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/EmberPrompt/Panel/NoBtn" to="." method="_on_no_btn_pressed"]
