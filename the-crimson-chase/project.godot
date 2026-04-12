@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The-Crimson-Chase"
-run/main_scene="uid://cdlxaqt5j2hvj"
+run/main_scene="uid://5bprivuie62g"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]

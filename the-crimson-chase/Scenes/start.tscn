@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://5bprivuie62g"]
+
+[ext_resource type="Texture2D" uid="uid://dtw3hcehd1gww" path="res://Assets/sprites/StartPage.png" id="1_3bxa3"]
+[ext_resource type="Script" uid="uid://cutn0p25l82l0" path="res://Scripts/start.gd" id="1_r48yj"]
+
+[sub_resource type="Animation" id="Animation_5ogh5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.73, 0.73, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lb6bl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rk01k"]
+_data = {
+&"RESET": SubResource("Animation_lb6bl"),
+&"idle": SubResource("Animation_5ogh5")
+}
+
+[node name="Start" type="Node"]
+script = ExtResource("1_r48yj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(623, 326.00003)
+scale = Vector2(0.9, 0.867)
+texture = ExtResource("1_3bxa3")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 431.0
+offset_top = 587.0
+offset_right = 598.0
+offset_bottom = 633.0
+
+[node name="Button2" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_rk01k")
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
