@@ -8,4 +8,5 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		emit_signal("ember_claimed", global_position)
+		AudioManager.play_pooring_claim()
 		queue_free()

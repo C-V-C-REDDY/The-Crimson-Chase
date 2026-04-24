@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 
 
 func activate_slow():
+	AudioManager.play_berserk_laugh()
 	is_slowing = true
 	var original_speed = player.speed
 	player.speed = original_speed * 0.4

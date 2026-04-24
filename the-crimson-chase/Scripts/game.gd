@@ -17,6 +17,7 @@ var safe_spawn_points = []
 var used_positions = []
 
 func _ready() -> void:
+	AudioManager.play_in_game_bgm()
 	for point in %SpawnPonits.get_children():
 		safe_spawn_points.append(point.global_position)
 	spawn_key()
@@ -99,6 +100,7 @@ func lose_life():
 	invincible = true
 	print("lives before:", Global.lives)
 	Global.lives -= 1
+	AudioManager.play_hurt()
 	show_toast("- Heart !")
 	screen_shake(8.0, 0.3)
 	print("lives after:", Global.lives)

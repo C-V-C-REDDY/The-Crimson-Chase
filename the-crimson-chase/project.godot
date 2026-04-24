@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 [autoload]
 
 Global="*res://Scripts/global.gd"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [global_group]
 

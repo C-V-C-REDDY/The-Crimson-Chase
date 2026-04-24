@@ -1,6 +1,7 @@
 extends Node
 
 func _ready() -> void:
+	AudioManager.play_menu_bgm()
 	%AnimationPlayer.play("idle")
 
 

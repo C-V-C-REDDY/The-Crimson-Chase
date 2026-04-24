@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 	
 	if shift_timer >= shift_interval - warning_time and not warning_given:
 		warning_given = true
+		AudioManager.play_safe_zone_sfx()
 		%Warning.play("warning")
 		print("Warning - SafeZone soon!")
 		

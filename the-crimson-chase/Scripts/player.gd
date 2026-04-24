@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var anim_player: AnimationPlayer = $PlayerAnimation
 @onready var pooring: Node2D = $"../Pooring"
+@onready var mc_wals_sfx: AudioStreamPlayer = %MC_Wals_Sfx
 
 
 var speed = 200.0
@@ -22,3 +23,13 @@ func _physics_process(_delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * speed
 	move_and_slide()
+	#if velocity != Vector2.ZERO:
+		#AudioManager.play_mc_walk()
+	#else:
+		#AudioManager.stop_mc_walk()
+
+func _process(_delta: float) -> void:
+	if velocity != Vector2.ZERO:
+		AudioManager.play_mc_walk()
+	else:
+		AudioManager.stop_mc_walk()

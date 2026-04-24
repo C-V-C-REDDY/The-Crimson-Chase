@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7e7qdlih4h2t"]
+
+[ext_resource type="Script" uid="uid://cwl0isbeapehe" path="res://Scripts/audio_manager.gd" id="1_5nrbi"]
+[ext_resource type="AudioStream" uid="uid://c3n0fji5n8lb2" path="res://Assets/Audio/Threshold_of_Malice.mp3" id="1_lwpe1"]
+[ext_resource type="AudioStream" uid="uid://b3ecjkgig6mq5" path="res://Assets/Audio/Teeth_Behind_the_Door.mp3" id="2_jmilc"]
+[ext_resource type="AudioStream" uid="uid://c1k346i2jfksq" path="res://Assets/Audio/HurtM.wav" id="3_5nrbi"]
+[ext_resource type="AudioStream" uid="uid://b1mviuksrskup" path="res://Assets/Audio/key.wav" id="4_pn88s"]
+[ext_resource type="AudioStream" uid="uid://yr02sst565jv" path="res://Assets/Audio/safezone.wav" id="5_fasow"]
+[ext_resource type="AudioStream" uid="uid://c64m2fiq3iqm0" path="res://Assets/Audio/SkillB.wav" id="6_1bal0"]
+[ext_resource type="AudioStream" uid="uid://bv17wl8byrry6" path="res://Assets/Audio/stealth.wav" id="7_vhwx7"]
+[ext_resource type="AudioStream" uid="uid://chb2n3fdaf7tg" path="res://Assets/Audio/WalkB.mp3" id="8_lwpe1"]
+[ext_resource type="AudioStream" uid="uid://cmrw2t0kus3e4" path="res://Assets/Audio/walkm.mp3" id="9_dv115"]
+[ext_resource type="AudioStream" uid="uid://dm2ufghkc8r72" path="res://Assets/Audio/Ember_pooring.wav" id="11_pn88s"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_5nrbi")
+
+[node name="Game_Bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_lwpe1")
+bus = &"BGM"
+parameters/looping = true
+
+[node name="In_Game_Bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_jmilc")
+volume_db = -15.0
+bus = &"BGM"
+parameters/looping = true
+
+[node name="Hurt_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_5nrbi")
+bus = &"SFX"
+
+[node name="Key_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_pn88s")
+bus = &"SFX"
+
+[node name="Safe_Zone_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_fasow")
+bus = &"SFX"
+
+[node name="Berserk_Skill_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_1bal0")
+bus = &"SFX"
+
+[node name="Stealth_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_vhwx7")
+bus = &"SFX"
+
+[node name="Berserk_Walk_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_lwpe1")
+bus = &"SFX"
+
+[node name="MC_Wals_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_dv115")
+bus = &"SFX"
+
+[node name="Pooring_claim_Sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_pn88s")
+bus = &"SFX"
