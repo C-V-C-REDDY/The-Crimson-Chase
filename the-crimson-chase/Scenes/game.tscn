@@ -24,45 +24,6 @@ tracks/0/keys = {
 "values": [true, false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_v158k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_h4fw4"]
 resource_name = "H2"
 length = 0.6
@@ -131,6 +92,45 @@ tracks/2/keys = {
 "values": [true, false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_v158k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5yvi"]
 _data = {
 &"H1": SubResource("Animation_1l0tm"),
@@ -186,15 +186,6 @@ offset_bottom = 297.0
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
-[node name="Keys" type="Label" parent="CanvasLayer/Win"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 315.0
-offset_top = 193.0
-offset_right = 355.0
-offset_bottom = 216.0
-theme_override_font_sizes/font_size = 45
-
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
 process_mode = 3
@@ -228,8 +219,10 @@ text = "RESTART"
 [node name="key" type="Label" parent="CanvasLayer/GameOver"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 235.0
+offset_top = 22.0
+offset_right = 275.0
+offset_bottom = 45.0
 
 [node name="LivesDisplay" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -255,6 +248,14 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
+[node name="Keys" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 315.0
+offset_top = 193.0
+offset_right = 355.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 45
+
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(93, 123)
 
@@ -266,6 +267,54 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_o5yvi")
 }
+
+[node name="SpawnPonits" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(211, 507)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(785, 505)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(666, 53)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(514, 114)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(208, 45)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(89, 411)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(654, 475)
+
+[node name="Marker2D8" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(784, 212)
+
+[node name="Marker2D9" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(434, 501)
+
+[node name="Marker2D10" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(527, 364)
+
+[node name="Marker2D11" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(93, 62)
+
+[node name="Marker2D12" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(420, 45)
+
+[node name="Marker2D13" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(221, 294)
+
+[node name="Marker2D14" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(866, 402)
+
+[node name="Marker2D15" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(976, 490)
 
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_button_pressed"]

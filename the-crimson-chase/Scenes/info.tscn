@@ -1,0 +1,200 @@
+[gd_scene load_steps=8 format=3 uid="uid://cb0n6mtwufhtf"]
+
+[ext_resource type="Script" uid="uid://c60rqkbpyau0j" path="res://Scripts/info.gd" id="1_ahul7"]
+[ext_resource type="Texture2D" uid="uid://dpett7s2p86p7" path="res://Assets/sprites/MC.png" id="1_qjrxf"]
+[ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="2_ahul7"]
+[ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="3_wjprj"]
+
+[sub_resource type="Animation" id="Animation_nmlck"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(131.00002, 178), Vector2(131, 168), Vector2(131, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Berserk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(739.00006, 362), Vector2(739, 352), Vector2(739, 362)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pooring:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.15), Vector2(0.15, 0.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pooring:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(137, 327), Vector2(137, 300), Vector2(137, 327)]
+}
+
+[sub_resource type="Animation" id="Animation_v0v1k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(131.00002, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Berserk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(739.00006, 362)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pooring:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pooring:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137, 327)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2vp"]
+_data = {
+&"RESET": SubResource("Animation_v0v1k"),
+&"idle": SubResource("Animation_nmlck")
+}
+
+[node name="INFO" type="Node"]
+script = ExtResource("1_ahul7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 0.5099514, 0.44637543, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.5
+offset_right = 147.5
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "The Crimson Chase
+           INFO"
+
+[node name="Mc" type="Sprite2D" parent="."]
+position = Vector2(131.00002, 178)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_qjrxf")
+
+[node name="Pooring" type="Sprite2D" parent="."]
+position = Vector2(137, 327)
+scale = Vector2(0.1, 0.15)
+texture = ExtResource("2_ahul7")
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(1, 0.39, 0.39, 1)
+offset_left = 184.0
+offset_top = 304.0
+offset_right = 224.0
+offset_bottom = 327.0
+text = "Pooring
+Companion of Maze 
+Follows Maze All The Time "
+
+[node name="Berserk" type="Sprite2D" parent="."]
+position = Vector2(739.00006, 362)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_wjprj")
+hframes = 4
+
+[node name="Label4" type="Label" parent="."]
+modulate = Color(1, 0.45882353, 0.49803922, 1)
+offset_left = 845.0
+offset_top = 198.0
+offset_right = 1084.0
+offset_bottom = 273.0
+text = "Berserk
+Owner Of The Crimson Maze
+and Wants to Kill The Introders"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1108.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = " X "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_vq2vp")
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color(0.99150485, 0.5982564, 1, 1)
+offset_left = 181.0
+offset_top = 146.0
+offset_right = 399.0
+offset_bottom = 195.0
+text = "MAGE
+Controls : Arrows and WASD"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

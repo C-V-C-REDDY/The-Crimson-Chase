@@ -13,20 +13,12 @@ var ember_pooring_scene = preload("res://Scenes/ember_pooring.tscn")
 var ember_timer = 60.0
 var ember_elapsed = 0.0
 var toast_offset = 0
-var safe_spawn_points = [
-	Vector2(200, 300),
-	Vector2(400, 200),
-	Vector2(600, 400),
-	Vector2(800, 300),
-	Vector2(300, 500),
-	Vector2(700, 150),
-	Vector2(500, 500),
-	Vector2(150, 450),
-	Vector2(900, 400),
-	Vector2(450, 350),
-]
+var safe_spawn_points = []
+var used_positions = []
 
 func _ready() -> void:
+	for point in %SpawnPonits.get_children():
+		safe_spawn_points.append(point.global_position)
 	spawn_key()
 
 func _process(delta: float) -> void:
@@ -51,7 +43,8 @@ func _spawn_ember_pooring():
 	show_toast("Elite Pooring Spawned!")
 
 
-func _on_ember_claimed():
+func _on_ember_claimed(pos):
+	used_positions.erase(pos)
 	berserk_speed_up()
 	var roll = randi() % 3
 	match roll:
@@ -63,6 +56,7 @@ func _on_ember_claimed():
 
 func spawn_key():
 	if current_key != null:
+		used_positions.erase(current_key.global_position)
 		current_key.queue_free()
 	var key = key_scene.instantiate()
 	key.global_position = _random_floor_position()
@@ -142,8 +136,20 @@ func apply_heal():
 			3:
 				%Heart3.visible = true
 
+
+func get_random_spawn():
+	var available = safe_spawn_points.filter(func(p): return p not in used_positions)
+	if available.is_empty():
+		used_positions.clear()
+		available = safe_spawn_points
+	var pos = available[randi() % available.size()]
+	used_positions.append(pos)
+	return pos
+
+
+
 func _random_floor_position() -> Vector2:
-	return safe_spawn_points[randi() % safe_spawn_points.size()]
+	return get_random_spawn()
 
 
 func apply_stealth():
