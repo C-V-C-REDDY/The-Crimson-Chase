@@ -2,9 +2,11 @@ extends Node
 
 var key_scene = preload("res://Scenes/key.tscn")
 var keys_collected = 0
+var keys_count = 0
+var pooring_count = 0
 var max_keys = 2
 var spawn_timer = 30.0
-var game_timer = 600.0
+var game_timer = 90.0
 var current_key = null
 var ember_speed_boost = 20.0
 var invincible = false
@@ -21,6 +23,7 @@ func _ready() -> void:
 	for point in %SpawnPonits.get_children():
 		safe_spawn_points.append(point.global_position)
 	spawn_key()
+	AudioManager.play_berserk_walk_sfx()
 
 func _process(delta: float) -> void:
 	game_timer -= delta
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 		ember_elapsed = 0.0
 		_spawn_ember_pooring()
 	if game_timer <= 0:
-		game_over()
+		win()
 	
 	if spawn_timer <= 0 and current_key == null:
 		spawn_key()
@@ -46,6 +49,8 @@ func _spawn_ember_pooring():
 
 func _on_ember_claimed(pos):
 	used_positions.erase(pos)
+	pooring_count += 1
+	%pooringcount.text = "X" + str(pooring_count)
 	berserk_speed_up()
 	var roll = randi() % 3
 	match roll:
@@ -63,20 +68,23 @@ func spawn_key():
 	key.global_position = _random_floor_position()
 	call_deferred("add_child", key)
 	current_key = key
+	key.keys_collected.connect(_on_key_collected)
 	spawn_timer = 30.0
+
+func _on_key_collected():
+	keys_count += 1
+	%Keys_count.text = "X" + str(keys_count)
 
 
 func win():
 	get_tree().paused = true
 	%Win.visible = true
-	%Keys.text = "Keys Collected: " + str(keys_collected)
 	print("You Win!")
 
 
 func game_over():
 	get_tree().paused = true
 	%GameOver.visible = true
-	%key.text = "Keys Collected: " + str(keys_collected)
 	print("Game Over!")
 
 

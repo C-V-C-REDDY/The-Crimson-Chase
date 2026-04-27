@@ -57,6 +57,7 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("8_lwpe1")
 bus = &"SFX"
+parameters/looping = true
 
 [node name="MC_Wals_Sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

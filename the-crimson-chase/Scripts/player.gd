@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var anim_player: AnimationPlayer = $PlayerAnimation
 @onready var pooring: Node2D = $"../Pooring"
-@onready var mc_wals_sfx: AudioStreamPlayer = %MC_Wals_Sfx
+#@onready var mc_wals_sfx: AudioStreamPlayer = %MC_Wals_Sfx
 
 
 var speed = 200.0

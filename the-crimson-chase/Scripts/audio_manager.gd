@@ -49,5 +49,10 @@ func play_berserk_walk_sfx():
 func stop_berserk_walk():
 	%Berserk_Walk_Sfx.stop()
 
+
+func is_footstep_berserk_playing() -> bool:
+	return %Berserk_Walk_Sfx.playing
+
+
 func play_pooring_claim():
 	%Pooring_claim_Sfx.play()

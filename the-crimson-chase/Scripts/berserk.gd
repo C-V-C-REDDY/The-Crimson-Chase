@@ -52,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+
 func activate_slow():
 	AudioManager.play_berserk_laugh()
 	is_slowing = true
