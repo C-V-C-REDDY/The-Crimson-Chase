@@ -147,13 +147,13 @@ script = ExtResource("1_3dryh")
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
 unique_name_in_owner = true
-position = Vector2(487, 300)
+position = Vector2(1325, 686)
 
 [node name="World" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(-78, -44)
 
 [node name="Pooring" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(512, 306)
+position = Vector2(1470, 614)
 scale = Vector2(0.5, 0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["hud"]]
@@ -308,7 +308,7 @@ offset_bottom = 67.0
 text = " X 0"
 
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
-position = Vector2(95, 125)
+position = Vector2(1326, 687)
 
 [node name="Berserk" parent="." instance=ExtResource("7_1l0tm")]
 position = Vector2(1014, 80)
@@ -323,46 +323,46 @@ libraries = {
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(211, 507)
+position = Vector2(462, 818)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(785, 505)
+position = Vector2(129, 1222)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(666, 53)
+position = Vector2(721, 1564)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(514, 114)
+position = Vector2(1321, 854)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(208, 45)
+position = Vector2(2128, 614)
 
 [node name="Marker2D6" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(89, 411)
+position = Vector2(2181, 1133)
 
 [node name="Marker2D7" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(654, 475)
+position = Vector2(2269, 1680)
 
 [node name="Marker2D8" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(784, 212)
+position = Vector2(2625, 1753)
 
 [node name="Marker2D9" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(434, 501)
+position = Vector2(98, 1492)
 
 [node name="Marker2D10" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(527, 364)
+position = Vector2(1334, 1349)
 
 [node name="Marker2D11" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(93, 62)
+position = Vector2(2509, 105)
 
 [node name="Marker2D12" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(420, 45)
+position = Vector2(1478, 100)
 
 [node name="Marker2D13" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(221, 294)
+position = Vector2(1793, 478)
 
 [node name="Marker2D14" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(866, 402)
+position = Vector2(230, 255)
 
 [node name="Marker2D15" type="Marker2D" parent="SpawnPonits"]
 position = Vector2(976, 490)

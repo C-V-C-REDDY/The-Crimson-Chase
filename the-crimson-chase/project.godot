@@ -19,6 +19,11 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 Global="*res://Scripts/global.gd"
 AudioManager="*res://Scenes/audio_manager.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [global_group]
 
 player=""
@@ -63,4 +68,4 @@ ui_down={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.00069389754, 0.0006938977, 0.0006938973, 1)
+environment/defaults/default_clear_color=Color(0.025363795, 0.025363805, 0.02536378, 1)
