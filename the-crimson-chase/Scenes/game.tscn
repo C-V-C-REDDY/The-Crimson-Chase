@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=20 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cxvkjhyvnbx25" path="res://Scenes/safe_zone.tscn" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://ekwthyoqcprx" path="res://Scenes/berserk.tscn" id="7_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="7_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="7_rku1e"]
 [ext_resource type="PackedScene" uid="uid://b7e7qdlih4h2t" path="res://Scenes/audio_manager.tscn" id="8_v158k"]
 [ext_resource type="Texture2D" uid="uid://dmlcxabycgv7k" path="res://Assets/sprites/Key.png" id="9_h4fw4"]
+[ext_resource type="PackedScene" uid="uid://cvgkp6dl2e6fc" path="res://Scenes/warning_board.tscn" id="11_o5yvi"]
 
 [sub_resource type="Animation" id="Animation_1l0tm"]
 resource_name = "H1"
@@ -17,7 +19,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/path = NodePath("HUD/LivesDisplay/Heart3:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +35,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/0/path = NodePath("HUD/LivesDisplay/Heart2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +47,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/1/path = NodePath("HUD/LivesDisplay/Heart3:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -61,7 +63,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/path = NodePath("HUD/LivesDisplay/Heart3:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +75,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/1/path = NodePath("HUD/LivesDisplay/Heart2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +87,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
+tracks/2/path = NodePath("HUD/LivesDisplay/Heart1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -100,7 +102,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/LivesDisplay/Heart3:visible")
+tracks/0/path = NodePath("HUD/LivesDisplay/Heart3:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -112,7 +114,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/LivesDisplay/Heart2:visible")
+tracks/1/path = NodePath("HUD/LivesDisplay/Heart2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -124,7 +126,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/LivesDisplay/Heart1:visible")
+tracks/2/path = NodePath("HUD/LivesDisplay/Heart1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -133,13 +135,168 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HUD/Win/WinLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.59200776, 1.445205, 0.87640697, 0.972549)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HUD/Win/Sprite2D2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HUD/Win/Sprite2D2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(575, 129)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HUD/GameOver/Label:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.3, 0.3, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HUD/GameOver/Sprite2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(215, 400)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HUD/GameOver/Sprite2D:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.98, 0.98, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rfjv2"]
+resource_name = "Win"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/Win/WinLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.59200776, 1.445205, 0.87640697, 0.972549), Color(4.0321647e-06, 0.91256773, 0.46095186, 0.973), Color(0.56001425, 0.9999998, 0.683779, 0.972549)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/Win/Sprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.3), Vector2(0.3, 0.2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUD/Win/Sprite2D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(575, 129), Vector2(575, 179)]
+}
+
+[sub_resource type="Animation" id="Animation_1phco"]
+resource_name = "game_over"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/GameOver/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.3, 0.3, 1), Color(0.8254502, 0, 0.13168824, 1), Color(0.9998099, 0.16133732, 0.21767572, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/GameOver/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(215, 400), Vector2(215, 350), Vector2(215, 400)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUD/GameOver/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.98, 0.98, 1), Color(1, 0.31, 0.31, 1), Color(1, 0.98, 0.98, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5yvi"]
 _data = {
 &"H1": SubResource("Animation_1l0tm"),
 &"H2": SubResource("Animation_h4fw4"),
 &"H3": SubResource("Animation_ldgsr"),
-&"RESET": SubResource("Animation_v158k")
+&"RESET": SubResource("Animation_v158k"),
+&"Win": SubResource("Animation_rfjv2"),
+&"game_over": SubResource("Animation_1phco")
 }
 
 [node name="Game" type="Node" groups=["game"]]
@@ -147,18 +304,64 @@ script = ExtResource("1_3dryh")
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
 unique_name_in_owner = true
+z_index = 15
 position = Vector2(1325, 686)
 
 [node name="World" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(-78, -44)
 
+[node name="Berserk" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(40, 1825)
+
 [node name="Pooring" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(1470, 614)
 scale = Vector2(0.5, 0.5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["hud"]]
+[node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
 
-[node name="Win" type="ColorRect" parent="CanvasLayer"]
+[node name="FlashRect" type="ColorRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MissionLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.94, 0.1222, 0.1222, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_right = 142.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Collect 2 Keys Before Time Runs Out!"
+
+[node name="MissionBg" type="ColorRect" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+z_index = -5
+offset_left = 434.0
+offset_top = 2.0
+offset_right = 722.0
+offset_bottom = 51.0
+color = Color(0, 0, 0, 0.18431373)
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.652, 0.13, 1)
+offset_left = 549.0
+offset_top = 25.0
+offset_right = 589.0
+offset_bottom = 48.0
+text = "100"
+
+[node name="Win" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
@@ -170,24 +373,25 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.017732391, 0.017732391, 0.01773239, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Win"]
+[node name="WinLabel" type="Label" parent="HUD/Win"]
+unique_name_in_owner = true
 modulate = Color(0.59200776, 1.445205, 0.87640697, 0.972549)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -112.0
-offset_top = 2.0
-offset_right = 70.0
-offset_bottom = 47.0
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -94.5
+offset_right = 264.0
+offset_bottom = 94.5
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "THE CRIMSON CHASE
-               
+text = "CONGRATULATIONS YOU SURVIED"
 
-                WIN"
-
-[node name="Restart" type="Button" parent="CanvasLayer/Win"]
+[node name="Restart" type="Button" parent="HUD/Win"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -203,7 +407,25 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
-[node name="GameOver" type="ColorRect" parent="CanvasLayer"]
+[node name="Sprite2D2" type="Sprite2D" parent="HUD/Win"]
+position = Vector2(575, 129)
+scale = Vector2(0.2, 0.3)
+texture = ExtResource("7_ldgsr")
+
+[node name="Label" type="Label" parent="HUD/Win"]
+modulate = Color(1, 0.42000002, 0.42000002, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.5
+offset_right = 162.5
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "THE CRIMSON CHASE"
+
+[node name="GameOver" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
@@ -215,38 +437,60 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.06053035, 0.06053035, 0.060530342, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -162.5
-offset_right = 162.5
-offset_bottom = 189.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-text = "THE CRIMSON CHASE
-  
-
-      GAME OVER"
-
-[node name="LoseRestart" type="Button" parent="CanvasLayer/GameOver"]
+[node name="Label" type="Label" parent="HUD/GameOver"]
+modulate = Color(1, 0.3, 0.3, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -108.5
-offset_top = -38.5
-offset_right = 108.5
-offset_bottom = 38.5
+offset_left = -162.5
+offset_top = -94.5
+offset_right = 162.5
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "KILLED BY BERSERK"
+
+[node name="LoseRestart" type="Button" parent="HUD/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -31.0
+offset_right = 104.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
-[node name="LivesDisplay" type="HBoxContainer" parent="CanvasLayer"]
+[node name="Label2" type="Label" parent="HUD/GameOver"]
+modulate = Color(1, 0.51, 0.51, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.5
+offset_right = 203.5
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "THE CRIMSON CHASE"
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/GameOver"]
+modulate = Color(1, 0.98, 0.98, 1)
+position = Vector2(215, 400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_rku1e")
+hframes = 4
+
+[node name="LivesDisplay" type="HBoxContainer" parent="HUD"]
 unique_name_in_owner = true
 process_mode = 3
 offset_left = -5.9999995
@@ -255,22 +499,22 @@ offset_right = 1667.0
 offset_bottom = 445.0
 scale = Vector2(0.1, 0.1)
 
-[node name="Heart1" type="TextureRect" parent="CanvasLayer/LivesDisplay"]
+[node name="Heart1" type="TextureRect" parent="HUD/LivesDisplay"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
-[node name="Heart2" type="TextureRect" parent="CanvasLayer/LivesDisplay"]
+[node name="Heart2" type="TextureRect" parent="HUD/LivesDisplay"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
-[node name="Heart3" type="TextureRect" parent="CanvasLayer/LivesDisplay"]
+[node name="Heart3" type="TextureRect" parent="HUD/LivesDisplay"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i6g32")
 
-[node name="Keys_count" type="Label" parent="CanvasLayer"]
+[node name="Keys_count" type="Label" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 53.0
 offset_top = 42.0
@@ -279,13 +523,13 @@ offset_bottom = 70.0
 theme_override_font_sizes/font_size = 20
 text = "X 0"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
 position = Vector2(26.000004, 53.000004)
 rotation = -0.34906584
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("9_h4fw4")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="HUD"]
 modulate = Color(1, 1, 1, 0.5019608)
 z_index = -5
 offset_left = 3.0
@@ -294,12 +538,12 @@ offset_right = 171.0
 offset_bottom = 71.0
 color = Color(0.038397163, 0.038397174, 0.038397145, 1)
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D2" type="Sprite2D" parent="HUD"]
 position = Vector2(115.99999, 52.999996)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("7_ldgsr")
 
-[node name="pooringcount" type="Label" parent="CanvasLayer"]
+[node name="pooringcount" type="Label" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 132.0
 offset_top = 44.0
@@ -307,14 +551,26 @@ offset_right = 172.0
 offset_bottom = 67.0
 text = " X 0"
 
+[node name="ToastLabel" type="Label" parent="HUD"]
+modulate = Color(1, 0.52, 0.52, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -76.0
+offset_right = 1.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(1326, 687)
 
-[node name="Berserk" parent="." instance=ExtResource("7_1l0tm")]
-position = Vector2(1014, 80)
-
 [node name="LivesAnim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_o5yvi")
 }
@@ -323,52 +579,67 @@ libraries = {
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(462, 818)
+position = Vector2(219, 243)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(129, 1222)
+position = Vector2(786, 573)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(721, 1564)
+position = Vector2(930, 77)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(1321, 854)
+position = Vector2(103, 895)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(2128, 614)
+position = Vector2(742, 1195)
 
 [node name="Marker2D6" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(2181, 1133)
+position = Vector2(1028, 799)
 
 [node name="Marker2D7" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(2269, 1680)
+position = Vector2(1665, 812)
 
 [node name="Marker2D8" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(2625, 1753)
+position = Vector2(980, 1751)
 
 [node name="Marker2D9" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(98, 1492)
+position = Vector2(283, 1449)
 
 [node name="Marker2D10" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(1334, 1349)
+position = Vector2(2347, 1377)
 
 [node name="Marker2D11" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(2509, 105)
+position = Vector2(2201, 1840)
 
 [node name="Marker2D12" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(1478, 100)
+position = Vector2(2406, 859)
 
 [node name="Marker2D13" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(1793, 478)
+position = Vector2(2630, 600)
 
 [node name="Marker2D14" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(230, 255)
+position = Vector2(2225, 149)
 
 [node name="Marker2D15" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(976, 490)
+position = Vector2(1523, 118)
 
 [node name="AudioManager" parent="." instance=ExtResource("8_v158k")]
 
-[connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Win/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOver/LoseRestart" to="." method="_on_lose_restart_pressed"]
+[node name="WarningBoard" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.9757106, 0.34525856, 1, 1)
+position = Vector2(1066, 895)
+board_message = "Berserk can phase through walls"
+
+[node name="WarningBoard2" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(1, 0.060000002, 0.060000002, 1)
+position = Vector2(1331, 903)
+board_message = "Claim Special Pooring to get buff"
+
+[node name="WarningBoard3" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.39393497, 0.7494898, 0.39420137, 1)
+position = Vector2(1643, 898)
+board_message = "Safe Zone changes every 30 sec"
+
+[connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="HUD/GameOver/LoseRestart" to="." method="_on_lose_restart_pressed"]

@@ -3,20 +3,22 @@ extends CharacterBody2D
 @onready var bersek_walk: AnimationPlayer = %BersekWalk
 @onready var hit_box: Area2D = $HitBox
 
-var speed = 100.0
+var speed = 80.0
 var player = null
 var game_timer_ref = 30.0
 var slow_unlocked = false
 var slow_cooldown = 30.0
 var slow_timer = 0.0
 var is_slowing = false
-var lair_position = Vector2(900, 80)
+var lair_position = Vector2(900, 300)
 var is_retreating = false
 
 func _ready() -> void:
 	%BersekWalk.play("walk")
 	await get_tree().process_frame
+	await  get_tree().process_frame
 	player = get_tree().get_first_node_in_group("player")
+
 
 
 func _physics_process(delta: float) -> void:
@@ -37,13 +39,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if Global.is_player_safe:
 		return
-	var direction =(player.global_position - global_position).normalized()
-	var distance = global_position.distance_to(player.global_position)
-	if distance < 80.0:
-		var perpenicular = Vector2(-direction.y, direction.x)
-		direction = (direction + perpenicular * 0.8).normalized()
 	
-	velocity = direction * speed 
+	
+	var direction = (player.global_position - global_position).normalized()
+	velocity = direction * speed
+	move_and_slide()
 	
 	if direction.x < 0:
 		%Sprite2D.flip_h = true

@@ -50,6 +50,9 @@ radius = 39.0
 height = 106.0
 
 [node name="Berserk" type="CharacterBody2D" groups=["berserk"]]
+z_index = -15
+scale = Vector2(0.7, 0.7)
+collision_mask = 0
 script = ExtResource("1_ujq7v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
