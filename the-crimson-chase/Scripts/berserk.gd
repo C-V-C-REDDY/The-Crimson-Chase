@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var bersek_walk: AnimationPlayer = %BersekWalk
 @onready var hit_box: Area2D = $HitBox
 
-var speed = 80.0
+var speed = 65.0
 var player = null
 var game_timer_ref = 30.0
 var slow_unlocked = false

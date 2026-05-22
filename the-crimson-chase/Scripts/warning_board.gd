@@ -7,6 +7,8 @@ var triggered = false
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player" and not triggered:
+	if triggered:
+		return
+	if body.name == "Player":
 		triggered = true
 	get_tree().get_first_node_in_group("game").warning_toast(board_message)

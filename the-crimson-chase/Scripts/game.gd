@@ -4,7 +4,7 @@ var key_scene = preload("res://Scenes/key.tscn")
 var keys_collected = 0
 var keys_count = 0
 var pooring_count = 0
-var max_keys = 2
+var max_keys = 5
 var spawn_timer = 3.0
 var game_timer = 300.0
 var current_key = null
@@ -17,7 +17,7 @@ var ember_elapsed = 0.0
 var toast_offset = 0
 var safe_spawn_points = []
 var used_positions = []
-var mission_timer = 100
+var mission_timer = 150
 var mission_active = false
 var mission_start_delay = 5.0
 var mission_elapsed = 0.0
@@ -73,6 +73,7 @@ func mission_complete():
 	await get_tree().create_timer(3).timeout
 	%MissionLabel.visible = false
 	%MissionBg.visible = false
+	win()
 	#%TimerLabel.visible = false
 	#print("Mission COmplete")
 
@@ -107,9 +108,6 @@ func _on_ember_claimed(pos):
 
 
 func spawn_key():
-	if current_key != null:
-		used_positions.erase(current_key.global_position)
-		current_key.queue_free()
 	var key = key_scene.instantiate()
 	key.global_position = _random_floor_position()
 	call_deferred("add_child", key)
@@ -128,7 +126,7 @@ func win():
 	get_tree().paused = true
 	%Win.visible = true
 	%LivesAnim.play("Win")
-	print("You Win!")
+
 
 
 func game_over():

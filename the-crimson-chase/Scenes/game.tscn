@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=21 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -289,6 +289,10 @@ tracks/2/keys = {
 "values": [Color(1, 0.98, 0.98, 1), Color(1, 0.31, 0.31, 1), Color(1, 0.98, 0.98, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_rku1e"]
+resource_name = "lose"
+length = 0.4
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5yvi"]
 _data = {
 &"H1": SubResource("Animation_1l0tm"),
@@ -296,7 +300,8 @@ _data = {
 &"H3": SubResource("Animation_ldgsr"),
 &"RESET": SubResource("Animation_v158k"),
 &"Win": SubResource("Animation_rfjv2"),
-&"game_over": SubResource("Animation_1phco")
+&"game_over": SubResource("Animation_1phco"),
+&"lose": SubResource("Animation_rku1e")
 }
 
 [node name="Game" type="Node" groups=["game"]]
@@ -339,7 +344,8 @@ offset_left = -142.0
 offset_right = 142.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Collect 2 Keys Before Time Runs Out!"
+theme_override_font_sizes/font_size = 16
+text = "Collect 5 Keys Before Time Runs Out!"
 
 [node name="MissionBg" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
@@ -623,21 +629,51 @@ position = Vector2(2225, 149)
 [node name="Marker2D15" type="Marker2D" parent="SpawnPonits"]
 position = Vector2(1523, 118)
 
+[node name="Marker2D16" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1331, 1380)
+
+[node name="Marker2D17" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1853, 1367)
+
+[node name="Marker2D18" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1795, 477)
+
+[node name="Marker2D19" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1314, 440)
+
+[node name="Marker2D20" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(2254, 344)
+
+[node name="Marker2D21" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(2154, 1083)
+
+[node name="Marker2D22" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(385, 546)
+
+[node name="Marker2D23" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1615, 1647)
+
+[node name="Marker2D24" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(422, 1806)
+
+[node name="Marker2D25" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(1560, 1158)
+
 [node name="AudioManager" parent="." instance=ExtResource("8_v158k")]
 
 [node name="WarningBoard" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.9757106, 0.34525856, 1, 1)
-position = Vector2(1066, 895)
+position = Vector2(1066, 761)
 board_message = "Berserk can phase through walls"
 
 [node name="WarningBoard2" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(1, 0.060000002, 0.060000002, 1)
-position = Vector2(1331, 903)
+position = Vector2(1323, 824)
 board_message = "Claim Special Pooring to get buff"
 
 [node name="WarningBoard3" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.39393497, 0.7494898, 0.39420137, 1)
-position = Vector2(1643, 898)
+position = Vector2(1575, 771)
 board_message = "Safe Zone changes every 30 sec"
 
 [connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_button_pressed"]
