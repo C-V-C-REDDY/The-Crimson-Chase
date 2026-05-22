@@ -11,6 +11,9 @@ func _ready() -> void:
 	pooring.follow_target = self
 
 func _physics_process(_delta: float) -> void:
+	if Global.player_frozen:
+		velocity = Vector2.ZERO
+		return
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1
@@ -23,10 +26,7 @@ func _physics_process(_delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * speed
 	move_and_slide()
-	#if velocity != Vector2.ZERO:
-		#AudioManager.play_mc_walk()
-	#else:
-		#AudioManager.stop_mc_walk()
+
 
 func _process(_delta: float) -> void:
 	if velocity != Vector2.ZERO:

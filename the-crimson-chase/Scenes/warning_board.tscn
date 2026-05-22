@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvgkp6dl2e6fc"]
+
+[ext_resource type="Texture2D" uid="uid://de7uc1gnfng4c" path="res://Assets/sprites/warning.png" id="1_aeo2k"]
+[ext_resource type="Script" uid="uid://c3blg7l1uuw6" path="res://Scripts/warning_board.gd" id="1_ikun0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeo2k"]
+radius = 21.84033
+
+[node name="WarningBoard" type="Node2D"]
+script = ExtResource("1_ikun0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_aeo2k")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_aeo2k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
