@@ -3,12 +3,16 @@ extends CharacterBody2D
 @onready var bersek_walk: AnimationPlayer = %BersekWalk
 @onready var hit_box: Area2D = $HitBox
 @onready var checkpoints: Node2D = $"../Checkpoints"
+@onready var fov_cone: Node2D = $FOVCone
+@onready var ray_left: RayCast2D = $FOVCone/RayLeft
+@onready var ray_center: RayCast2D = $FOVCone/RayCenter
+@onready var ray_right: RayCast2D = $FOVCone/RayRight
 
 
 enum State { PATROLLING , CHASING , RETREATING }
 var current_state = State.PATROLLING
 
-var speed = 65.0
+var speed = 75.0
 var player = null
 
 var checkpoint_index = 0
@@ -35,16 +39,15 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player == null:
 		return
-	if Global.is_player_safe:
-		return
 	
 	match current_state:
 		State.PATROLLING:
 			_patrol(delta)
+			_check_fov()
 		State.CHASING:
-			pass 
+			_chase(delta)
 		State.RETREATING:
-			pass
+			_retreat(delta)
 	#game_timer_ref -= delta
 	#
 	#if game_timer_ref <= 30.0:
@@ -88,6 +91,45 @@ func _patrol(delta) -> void:
 	if global_position.distance_to(target) < 10.0:
 		checkpoint_index = (checkpoint_index + 1 ) % checkpoint_list.size()
 
+func _chase(delta) -> void:
+	#print("is_player_safe:", Global.is_player_safe)
+	if Global.is_player_safe:
+		current_state = State.RETREATING
+		return
+	var direction = (player.global_position - global_position).normalized()
+	velocity = direction * speed
+	move_and_slide()
+	
+	if direction.x < 0:
+		%Sprite2D.flip_h = true
+	else:
+		%Sprite2D.flip_h = false
+
+
+func _retreat(delta) -> void:
+	var direction = (lair_position - global_position).normalized()
+	
+	velocity = direction * speed * 0.6
+	move_and_slide()
+	
+	if direction.x < 0:
+		%Sprite2D.flip_h = true
+	else:
+		%Sprite2D.flip_h = false
+	if global_position.distance_to(lair_position) < 20.0:
+		current_state = State.PATROLLING
+
+
+
+func _check_fov() -> void:
+	if velocity.length() > 0:
+		fov_cone.rotation = velocity.angle()
+	for ray in [ray_left, ray_center, ray_right]:
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			if collider and collider.is_in_group("player"):
+				current_state = State.CHASING
+				return
 #func activate_slow():
 	#AudioManager.play_berserk_laugh()
 	#is_slowing = true

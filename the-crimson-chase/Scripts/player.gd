@@ -4,7 +4,7 @@ extends CharacterBody2D
 #@onready var mc_wals_sfx: AudioStreamPlayer = %MC_Wals_Sfx
 
 
-var speed = 200.0
+var speed = 300.0
 
 func _ready() -> void:
 	anim_player.play("idle")

@@ -52,6 +52,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
+		#if global_position.distance_to(body.global_position) > 100.0:
+			#return
 		Global.is_player_safe = false
 	if not AudioManager.is_footstep_berserk_playing():
 		AudioManager.play_berserk_walk_sfx()
