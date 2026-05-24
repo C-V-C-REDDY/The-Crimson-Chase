@@ -316,7 +316,7 @@ position = Vector2(1325, 686)
 position = Vector2(-78, -44)
 
 [node name="Berserk" parent="." instance=ExtResource("7_1l0tm")]
-position = Vector2(40, 1825)
+position = Vector2(89, 192.00024)
 
 [node name="Pooring" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(1470, 614)
@@ -657,7 +657,7 @@ position = Vector2(1615, 1647)
 position = Vector2(422, 1806)
 
 [node name="Marker2D25" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(1560, 1158)
+position = Vector2(1569, 1146)
 
 [node name="AudioManager" parent="." instance=ExtResource("8_v158k")]
 
@@ -675,6 +675,35 @@ board_message = "Claim Special Pooring to get buff"
 modulate = Color(0.39393497, 0.7494898, 0.39420137, 1)
 position = Vector2(1575, 771)
 board_message = "Safe Zone changes every 30 sec"
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="CP0" type="Marker2D" parent="Checkpoints"]
+position = Vector2(66, 275)
+
+[node name="CP1" type="Marker2D" parent="Checkpoints"]
+position = Vector2(1492, 296)
+
+[node name="CP2" type="Marker2D" parent="Checkpoints"]
+position = Vector2(2474, 379)
+
+[node name="CP3" type="Marker2D" parent="Checkpoints"]
+position = Vector2(2473, 1036)
+
+[node name="CP4" type="Marker2D" parent="Checkpoints"]
+position = Vector2(1484, 1034)
+
+[node name="CP5" type="Marker2D" parent="Checkpoints"]
+position = Vector2(258, 1131)
+
+[node name="CP6" type="Marker2D" parent="Checkpoints"]
+position = Vector2(274, 1775)
+
+[node name="CP7" type="Marker2D" parent="Checkpoints"]
+position = Vector2(1595, 1803)
+
+[node name="CP8" type="Marker2D" parent="Checkpoints"]
+position = Vector2(2716, 1799)
 
 [connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_restart_pressed"]
