@@ -67,7 +67,7 @@ _data = {
 &"idle": SubResource("Animation_58hov")
 }
 
-[node name="Key" type="Area2D"]
+[node name="Key" type="Area2D" groups=["key"]]
 rotation = 0.43633232
 scale = Vector2(0.07, 0.07)
 script = ExtResource("1_udxw8")

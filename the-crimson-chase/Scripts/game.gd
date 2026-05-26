@@ -5,14 +5,14 @@ var keys_collected = 0
 var keys_count = 0
 var pooring_count = 0
 var max_keys = 5
-var spawn_timer = 3.0
+var spawn_timer = 10.0
 var game_timer = 300.0
 var current_key = null
 var ember_speed_boost = 20.0
 var invincible = false
 @onready var camera = $Player/Camera2D
 var ember_pooring_scene = preload("res://Scenes/ember_pooring.tscn")
-var ember_timer = 60.0
+var ember_timer = 30.0
 var ember_elapsed = 0.0
 var toast_offset = 0
 var safe_spawn_points = []
@@ -113,7 +113,7 @@ func spawn_key():
 	call_deferred("add_child", key)
 	current_key = key
 	key.keys_collected.connect(_on_key_collected)
-	spawn_timer = 3.0
+	spawn_timer = 10.0
 
 func _on_key_collected():
 	keys_count += 1

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://s3uad4owjgoq"]
+
+[ext_resource type="Texture2D" uid="uid://c18dru44nfnwg" path="res://Assets/sprites/bell.png" id="1_bmq1g"]
+[ext_resource type="Script" uid="uid://dkj0euvwyienn" path="res://Scripts/bell_trap.gd" id="1_icdkt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icdkt"]
+size = Vector2(9, 36)
+
+[sub_resource type="Animation" id="Animation_icdkt"]
+resource_name = "trap"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bell:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [4.363323, 5.061455, 4.363323]
+}
+
+[sub_resource type="Animation" id="Animation_6sjuq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bell:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.363323]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qptr"]
+_data = {
+&"RESET": SubResource("Animation_6sjuq"),
+&"trap": SubResource("Animation_icdkt")
+}
+
+[node name="BellTrap" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_icdkt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_icdkt")
+
+[node name="Bell" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 8.8817837e-16)
+rotation = 4.363323
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_bmq1g")
+
+[node name="bell_anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_5qptr")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

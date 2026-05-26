@@ -30,6 +30,9 @@ player=""
 berserk=""
 game=""
 hud=""
+safe_zone=""
+key=""
+elite_pooring=""
 
 [input]
 

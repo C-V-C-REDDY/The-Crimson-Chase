@@ -160,3 +160,9 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	#global_position = lair_position
 	#await get_tree().create_timer(2.0).timeout
 	#is_retreating = false
+
+
+func teleport_to(pos :Vector2) -> void:
+	await get_tree().create_timer(0.5).timeout
+	global_position = pos
+	current_state = State.CHASING
