@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://djtp4bk4ebnuh"]
+
+[ext_resource type="Script" uid="uid://b3fyi2jgukq2q" path="res://Scripts/check_point.gd" id="1_mcmgj"]
+[ext_resource type="Texture2D" uid="uid://bpn8dk71mh5yk" path="res://Assets/sprites/Checkpoint.png" id="1_oampm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcmgj"]
+size = Vector2(44, 38)
+
+[node name="CheckPoint" type="Area2D"]
+script = ExtResource("1_mcmgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_mcmgj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_oampm")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0.01999998, 0.01999998, 1)
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 170.99998
+offset_bottom = 8.0
+scale = Vector2(0.1, 0.1)
+max_value = 3.0
+show_percentage = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

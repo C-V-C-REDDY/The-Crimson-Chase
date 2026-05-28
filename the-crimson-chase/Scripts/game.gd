@@ -30,17 +30,21 @@ func _ready() -> void:
 		safe_spawn_points.append(point.global_position)
 	spawn_key()
 	AudioManager.play_berserk_walk_sfx()
-	
+	MissionManager.game_complted.connect(_on_game_complete)
+
+
+func _on_game_complete() -> void:
+	win()
+
 
 func _process(delta: float) -> void:
+	%B_timer.text = str(int(MissionManager.boss_timer))
 	game_timer -= delta
 	spawn_timer -= delta
 	ember_elapsed += delta
 	if ember_elapsed >= ember_timer:
 		ember_elapsed = 0.0
 		_spawn_ember_pooring()
-	#if game_timer <= 0:
-		#win()
 	if not mission_active:
 		mission_start_delay -= delta
 		if mission_start_delay <= 0:
@@ -54,28 +58,25 @@ func _process(delta: float) -> void:
 		mission_elapsed += delta
 		var time_left = int(mission_timer - mission_elapsed)
 		%TimerLabel.text = str(time_left)
-		if time_left <= 0 and keys_count < max_keys:
+		if time_left <= 0 and keys_count < max_keys and Global.checkpoints_collected < 5:
 			mission_failed()
 			%TimerLabel.visible = false
-	if keys_count >= max_keys and mission_active:
+	if keys_count >= max_keys and mission_active and Global.checkpoints_collected >= 5:
 		mission_complete()
 		%TimerLabel.visible = false
 			
 	if spawn_timer <= 0:
 		spawn_key()
+	%ck_points.text = "X" + str(Global.checkpoints_collected)
 
 func mission_complete():
 	mission_active = false
 	Global.mission_active = false
 	Global.player_frozen = false
 	%MissionLabel.text = "Mission Complete!!"
-	%TimerLabel.text = "Congratulations"
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2.0).timeout
 	%MissionLabel.visible = false
-	%MissionBg.visible = false
-	win()
-	#%TimerLabel.visible = false
-	#print("Mission COmplete")
+	MissionManager._hunt_complete()
 
 
 func mission_failed():
@@ -118,8 +119,6 @@ func spawn_key():
 func _on_key_collected():
 	keys_count += 1
 	%Keys_count.text = "X" + str(keys_count)
-	#if keys_count >= 2 and mission_active:
-		#mission_complete()
 
 
 func win():
@@ -210,6 +209,8 @@ func _random_floor_position() -> Vector2:
 
 
 func apply_stealth():
+	if MissionManager.boss_active:
+		return
 	show_toast("Stealth Mode!")
 	Global.is_player_safe = true
 	await get_tree().create_timer(10.0).timeout

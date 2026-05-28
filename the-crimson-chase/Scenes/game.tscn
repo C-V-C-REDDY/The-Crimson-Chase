@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=26 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -6,14 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://dci038p5081w4" path="res://Scenes/pooring.tscn" id="3_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://v156ao74h6ye" path="res://Assets/sprites/Heart.png" id="5_i6g32"]
 [ext_resource type="PackedScene" uid="uid://cxvkjhyvnbx25" path="res://Scenes/safe_zone.tscn" id="5_wowpa"]
+[ext_resource type="Script" uid="uid://bbmk1xqff6j1q" path="res://Scripts/hud.gd" id="6_ewbju"]
 [ext_resource type="PackedScene" uid="uid://ekwthyoqcprx" path="res://Scenes/berserk.tscn" id="7_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="7_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="7_rku1e"]
 [ext_resource type="PackedScene" uid="uid://b7e7qdlih4h2t" path="res://Scenes/audio_manager.tscn" id="8_v158k"]
 [ext_resource type="Texture2D" uid="uid://dmlcxabycgv7k" path="res://Assets/sprites/Key.png" id="9_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://bpn8dk71mh5yk" path="res://Assets/sprites/Checkpoint.png" id="10_nnt18"]
 [ext_resource type="PackedScene" uid="uid://cvgkp6dl2e6fc" path="res://Scenes/warning_board.tscn" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://con5cjofuw3fh" path="res://Scripts/minimap.gd" id="13_rfjv2"]
 [ext_resource type="PackedScene" uid="uid://s3uad4owjgoq" path="res://Scenes/bell_trap.tscn" id="14_1phco"]
+[ext_resource type="PackedScene" uid="uid://djtp4bk4ebnuh" path="res://Scenes/check_point.tscn" id="15_nb51f"]
 
 [sub_resource type="Animation" id="Animation_1l0tm"]
 resource_name = "H1"
@@ -325,6 +328,7 @@ position = Vector2(1470, 614)
 scale = Vector2(0.5, 0.5)
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
+script = ExtResource("6_ewbju")
 
 [node name="FlashRect" type="ColorRect" parent="HUD"]
 anchors_preset = 15
@@ -436,14 +440,13 @@ text = "THE CRIMSON CHASE"
 [node name="GameOver" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 modulate = Color(1, 1, 1, 0.5921569)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+color = Color(6.0271705e-05, 6.0271705e-05, 6.0271705e-05, 1)
 
 [node name="Label" type="Label" parent="HUD/GameOver"]
 modulate = Color(1, 0.3, 0.3, 1)
@@ -543,7 +546,7 @@ z_index = -5
 offset_left = 3.0
 offset_top = 2.0
 offset_right = 171.0
-offset_bottom = 71.0
+offset_bottom = 105.0
 color = Color(0.038397163, 0.038397174, 0.038397145, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="HUD"]
@@ -572,6 +575,59 @@ offset_right = 1.0
 offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="checkpoints" type="TextureRect" parent="HUD"]
+offset_left = -17.0
+offset_top = 70.0
+offset_right = 660.0
+offset_bottom = 439.0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("10_nnt18")
+
+[node name="ck_points" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 61.0
+offset_top = 84.0
+offset_right = 101.0
+offset_bottom = 107.0
+text = "X 0"
+
+[node name="red flash" type="ColorRect" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6188605, 0, 0.008802681, 1)
+
+[node name="B_label" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.17254902, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 53.0
+offset_right = 65.0
+offset_bottom = 76.0
+grow_horizontal = 2
+text = "              BOSS LEVEL !!! 
+SURVIVE 30 SEC FROM BERSERK"
+
+[node name="B_timer" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.39999998, 0.39999998, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
 
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(1326, 687)
@@ -666,7 +722,7 @@ position = Vector2(1569, 1146)
 [node name="WarningBoard" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.9757106, 0.34525856, 1, 1)
 position = Vector2(1066, 761)
-board_message = "Berserk can phase through walls"
+board_message = "Berserk can pass through walls !!!"
 
 [node name="WarningBoard2" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(1, 0.060000002, 0.060000002, 1)
@@ -677,6 +733,26 @@ board_message = "Beware of Bell Traps "
 modulate = Color(0.39393497, 0.7494898, 0.39420137, 1)
 position = Vector2(1575, 771)
 board_message = "Safe Zone changes every 30 sec"
+
+[node name="WarningBoard4" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.39, 0.51000005, 0.75, 1)
+position = Vector2(1197, 1320)
+board_message = "Beware of Invisible Walls "
+
+[node name="WarningBoard5" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.39, 0.51000005, 0.75, 1)
+position = Vector2(1973, 545)
+board_message = "Beware of Invisible Walls "
+
+[node name="WarningBoard6" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.79545844, 0.85, 0.19550002, 1)
+position = Vector2(1319, 497)
+board_message = "Complete The Mission and Survive The Boss Level"
+
+[node name="WarningBoard7" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.79545844, 0.85, 0.19550002, 1)
+position = Vector2(2094, 1301)
+board_message = "Stay Near Chaeck Point For 3 seconds To Charge It !"
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -725,14 +801,41 @@ position = Vector2(477, 1242)
 [node name="BellTrap3" parent="." instance=ExtResource("14_1phco")]
 position = Vector2(2035, 1100)
 
-[node name="BellTrap4" parent="." instance=ExtResource("14_1phco")]
-position = Vector2(2027, 620)
-
 [node name="BellTrap5" parent="." instance=ExtResource("14_1phco")]
-position = Vector2(142, 1226)
+position = Vector2(2033, 1854)
 
 [node name="BellTrap6" parent="." instance=ExtResource("14_1phco")]
-position = Vector2(2404, 858)
+position = Vector2(481, 1457)
+
+[node name="BellTrap7" parent="." instance=ExtResource("14_1phco")]
+position = Vector2(525, 110)
+
+[node name="BellTrap9" parent="." instance=ExtResource("14_1phco")]
+position = Vector2(2396, 853)
+
+[node name="CheckPoint" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(1192, 880)
+
+[node name="CheckPoint2" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(321, 754)
+
+[node name="CheckPoint3" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(2089, 1585)
+
+[node name="CheckPoint4" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(2087, 544)
+
+[node name="CheckPoint5" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(264, 432)
+
+[node name="CheckPoint6" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(671, 1504)
+
+[node name="CheckPoint7" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(2445, 992)
+
+[node name="CheckPoint8" parent="." instance=ExtResource("15_nb51f")]
+position = Vector2(2570, 312)
 
 [connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HUD/Win/Restart" to="." method="_on_restart_pressed"]

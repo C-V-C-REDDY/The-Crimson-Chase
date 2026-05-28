@@ -17,14 +17,7 @@ var player = null
 
 var checkpoint_index = 0
 var checkpoint_list = []
-
-#var game_timer_ref = 30.0
-#var slow_unlocked = false
-#var slow_cooldown = 15.0
-#var slow_timer = 0.0
-#var is_slowing = false
 var lair_position = Vector2(900, 300)
-#var is_retreating = false
 
 func _ready() -> void:
 	for cp in checkpoints.get_children():
@@ -33,6 +26,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	await  get_tree().process_frame
 	player = get_tree().get_first_node_in_group("player")
+	MissionManager.boss_mode_started.connect(_on_boss_mode)
 
 
 
@@ -48,33 +42,8 @@ func _physics_process(delta: float) -> void:
 			_chase(delta)
 		State.RETREATING:
 			_retreat(delta)
-	#game_timer_ref -= delta
-	#
-	#if game_timer_ref <= 30.0:
-		#slow_unlocked = true
-		#
-	#if slow_unlocked:
-		#slow_timer += delta
-		#if slow_timer >= slow_cooldown and not is_slowing:
-			#slow_timer = 0.0
-			#activate_slow()
-		#
-	#if player == null:
-		#return
 
-	#
-	#
-	#var direction = (player.global_position - global_position).normalized()
-	#velocity = direction * speed
-	#move_and_slide()
-	#
-	#if direction.x < 0:
-		#%Sprite2D.flip_h = true
-	#else:
-		#%Sprite2D.flip_h = false
-	#move_and_slide()
-
-func _patrol(delta) -> void:
+func _patrol(_delta) -> void:
 	if checkpoint_list.is_empty():
 		return
 	var target = checkpoint_list[checkpoint_index]
@@ -91,8 +60,7 @@ func _patrol(delta) -> void:
 	if global_position.distance_to(target) < 10.0:
 		checkpoint_index = (checkpoint_index + 1 ) % checkpoint_list.size()
 
-func _chase(delta) -> void:
-	#print("is_player_safe:", Global.is_player_safe)
+func _chase(_delta) -> void:
 	if Global.is_player_safe:
 		current_state = State.RETREATING
 		return
@@ -106,7 +74,7 @@ func _chase(delta) -> void:
 		%Sprite2D.flip_h = false
 
 
-func _retreat(delta) -> void:
+func _retreat(_delta) -> void:
 	var direction = (lair_position - global_position).normalized()
 	
 	velocity = direction * speed * 0.6
@@ -130,16 +98,6 @@ func _check_fov() -> void:
 			if collider and collider.is_in_group("player"):
 				current_state = State.CHASING
 				return
-#func activate_slow():
-	#AudioManager.play_berserk_laugh()
-	#is_slowing = true
-	#var original_speed = player.speed
-	#player.speed = original_speed * 0.4
-	#print("Berserk activated slow!")
-	#get_tree().get_root().get_node("Game").show_toast("Berserk's Skill Activated!")
-	#await get_tree().create_timer(3.0).timeout
-	#player.speed = original_speed
-	#is_slowing = false
 
 var hit_cooldown = false
 
@@ -150,19 +108,19 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		hit_cooldown = true
 		print("hit detected, parent is:", get_parent().name)
 		get_parent().lose_life()
-		#retreat_to_lair()
 		await get_tree().create_timer(0.1).timeout
 		hit_cooldown = false
-
-#
-#func retreat_to_lair():
-	#is_retreating = true
-	#global_position = lair_position
-	#await get_tree().create_timer(2.0).timeout
-	#is_retreating = false
 
 
 func teleport_to(pos :Vector2) -> void:
 	await get_tree().create_timer(0.5).timeout
 	global_position = pos
 	current_state = State.CHASING
+
+
+func _on_boss_mode() -> void:
+	speed *= 1.6
+	print("boss mode recieved by berserk")
+	print("berserk state is now :", current_state)
+	current_state = State.CHASING
+	
