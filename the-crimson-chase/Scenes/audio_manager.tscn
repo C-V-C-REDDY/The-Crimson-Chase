@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7e7qdlih4h2t"]
+[gd_scene load_steps=16 format=3 uid="uid://b7e7qdlih4h2t"]
 
 [ext_resource type="Script" uid="uid://cwl0isbeapehe" path="res://Scripts/audio_manager.gd" id="1_5nrbi"]
 [ext_resource type="AudioStream" uid="uid://c3n0fji5n8lb2" path="res://Assets/Audio/Threshold_of_Malice.mp3" id="1_lwpe1"]
@@ -11,6 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://chb2n3fdaf7tg" path="res://Assets/Audio/WalkB.mp3" id="8_lwpe1"]
 [ext_resource type="AudioStream" uid="uid://cmrw2t0kus3e4" path="res://Assets/Audio/walkm.mp3" id="9_dv115"]
 [ext_resource type="AudioStream" uid="uid://dm2ufghkc8r72" path="res://Assets/Audio/Ember_pooring.wav" id="11_pn88s"]
+[ext_resource type="AudioStream" uid="uid://drgk36tyxreop" path="res://Assets/Audio/The_Iron_Labyrinth.mp3" id="12_pn88s"]
+[ext_resource type="AudioStream" uid="uid://df07kug1jm813" path="res://Assets/Audio/Bell.wav" id="13_vhwx7"]
+[ext_resource type="AudioStream" uid="uid://dh2w0smuj5ggp" path="res://Assets/Audio/Check.wav" id="14_bkjj7"]
+[ext_resource type="AudioStream" uid="uid://cdbdplcymdxla" path="res://Assets/Audio/Tap.ogg" id="15_dv115"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_5nrbi")
@@ -23,8 +27,9 @@ parameters/looping = true
 
 [node name="In_Game_Bgm" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("2_jmilc")
-volume_db = -15.0
+volume_db = -5.0
 bus = &"BGM"
 parameters/looping = true
 
@@ -53,9 +58,12 @@ unique_name_in_owner = true
 stream = ExtResource("7_vhwx7")
 bus = &"SFX"
 
-[node name="Berserk_Walk_Sfx" type="AudioStreamPlayer" parent="."]
+[node name="Berserk_Walk_Sfx" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_lwpe1")
+volume_db = 0.5
+max_distance = 3000.0
+attenuation = 0.73204285
 bus = &"SFX"
 parameters/looping = true
 
@@ -68,3 +76,21 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("11_pn88s")
 bus = &"SFX"
+
+[node name="Boss" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("12_pn88s")
+bus = &"BGM"
+
+[node name="Bell" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_vhwx7")
+
+[node name="Cpoint" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_bkjj7")
+
+[node name="Tap" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_dv115")

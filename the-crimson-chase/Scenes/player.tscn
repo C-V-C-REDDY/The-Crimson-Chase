@@ -66,3 +66,5 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_fkybt")
 }
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]

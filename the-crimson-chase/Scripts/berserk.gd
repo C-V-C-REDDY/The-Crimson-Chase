@@ -31,9 +31,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player == null:
-		return
-	
+	if Global.is_player_safe:
+		current_state = State.RETREATING
 	match current_state:
 		State.PATROLLING:
 			_patrol(delta)

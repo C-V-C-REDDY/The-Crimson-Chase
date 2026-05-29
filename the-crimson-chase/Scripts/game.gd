@@ -19,12 +19,14 @@ var safe_spawn_points = []
 var used_positions = []
 var mission_timer = 150
 var mission_active = false
-var mission_start_delay = 5.0
+var mission_start_delay = 2.0
 var mission_elapsed = 0.0
 @onready var toast_label: Label = $HUD/ToastLabel
 
 
 func _ready() -> void:
+	MissionManager.reset()
+	MissionManager.start_hunt()
 	AudioManager.play_in_game_bgm()
 	for point in %SpawnPonits.get_children():
 		safe_spawn_points.append(point.global_position)
@@ -122,13 +124,17 @@ func _on_key_collected():
 
 
 func win():
+	%B_timer.visible = false
 	get_tree().paused = true
+	AudioManager.play_in_game_bgm()
 	%Win.visible = true
 	%LivesAnim.play("Win")
 
 
 
 func game_over():
+	%B_timer.visible = true
+	AudioManager.play_in_game_bgm()
 	get_tree().paused = true
 	%GameOver.visible = true
 	%LivesAnim.play("game_over")
@@ -136,12 +142,14 @@ func game_over():
 
 
 func _on_restart_pressed() -> void:
+	AudioManager.play_tap_sfx()
 	get_tree().paused = false
 	Global.reset()
 	get_tree().reload_current_scene()
 
 
 func _on_lose_restart_pressed() -> void:
+	AudioManager.play_tap_sfx()
 	get_tree().paused = false
 	Global.reset()
 	get_tree().reload_current_scene()
@@ -221,7 +229,7 @@ func apply_speed_boost():
 	show_toast("Speed Boost!")
 	var player = get_tree().get_first_node_in_group("player")
 	var original_speed = player.speed
-	player.speed = original_speed * 2.0
+	player.speed = original_speed * 1.5
 	await get_tree().create_timer(10.0).timeout
 	player.speed = original_speed
 
@@ -248,8 +256,12 @@ func show_toast(message: String):
 	label.queue_free()
 	toast_offset -= 25
 
+var toast_active = false
 
 func warning_toast(message: String):
+	if toast_active:
+		return
+	toast_active = true
 	toast_label.text = ""
 	toast_label.visible = true
 	for character in message:
@@ -257,3 +269,4 @@ func warning_toast(message: String):
 		await get_tree().create_timer(0.05).timeout
 	await get_tree().create_timer(3).timeout
 	toast_label.visible = false
+	toast_active = false

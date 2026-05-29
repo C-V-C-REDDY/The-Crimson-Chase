@@ -1,5 +1,14 @@
 extends Node
 
+
+func reset_audio() -> void:
+	%Boss.stop()
+	%In_Game_Bgm.stop()
+	%In_Game_Bgm.volume_db = 0.0
+	%Boss.volume_db = 0.0
+	play_in_game_bgm()
+
+
 func play_menu_bgm():
 	%In_Game_Bgm.stop()
 	%Game_Bgm.play()
@@ -8,6 +17,17 @@ func play_menu_bgm():
 func play_in_game_bgm():
 	%Game_Bgm.stop()
 	%In_Game_Bgm.play()
+
+func switch_to_boss_bgm() -> void:
+	var tween = create_tween()
+	tween.tween_property(%In_Game_Bgm, "volume_db", -40.0, 1.0)
+	await tween.finished
+	%In_Game_Bgm.stop()
+	%Boss.volume_db = -40.0
+	%Boss.play()
+	var tween2 = create_tween()
+	tween2.tween_property(%Boss, "volume_db", 0.0 , 1.0)
+
 
 
 func stop_bgm():
@@ -56,3 +76,15 @@ func is_footstep_berserk_playing() -> bool:
 
 func play_pooring_claim():
 	%Pooring_claim_Sfx.play()
+
+
+func play_bell_sfx():
+	%Bell.play()
+
+
+func play_tap_sfx():
+	%Tap.play()
+
+
+func play_checkpoint_sfx():
+	%Cpoint.play()

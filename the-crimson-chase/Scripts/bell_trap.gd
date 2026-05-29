@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if not body.is_in_group("player"):
 		return
-	
+	AudioManager.play_bell_sfx()
 	triggered = true
 	_summon_berserk()
 	%Bell.visible = true

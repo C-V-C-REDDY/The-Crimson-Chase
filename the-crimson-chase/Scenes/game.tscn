@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdlxaqt5j2hvj"]
+[gd_scene load_steps=27 format=3 uid="uid://cdlxaqt5j2hvj"]
 
 [ext_resource type="Script" uid="uid://v37gua6gr1cq" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dtqd3qgudh5uc" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxvkjhyvnbx25" path="res://Scenes/safe_zone.tscn" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://bbmk1xqff6j1q" path="res://Scripts/hud.gd" id="6_ewbju"]
 [ext_resource type="PackedScene" uid="uid://ekwthyoqcprx" path="res://Scenes/berserk.tscn" id="7_1l0tm"]
+[ext_resource type="FontFile" uid="uid://be4e7wqywc6x1" path="res://Assets/fount/MetalMania-Regular.ttf" id="7_85qyi"]
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="7_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="7_rku1e"]
 [ext_resource type="PackedScene" uid="uid://b7e7qdlih4h2t" path="res://Scenes/audio_manager.tscn" id="8_v158k"]
@@ -212,6 +213,18 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 0.98, 0.98, 1)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HUD/Win/Restart:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rfjv2"]
 resource_name = "Win"
@@ -253,6 +266,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(575, 129), Vector2(575, 179)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HUD/Win/Restart:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.00999999, 0.00999999, 1), Color(1, 0.49417663, 0.42771104, 1), Color(1, 0.00999999, 0.00999999, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1phco"]
 resource_name = "game_over"
@@ -291,7 +316,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 0.98, 0.98, 1), Color(1, 0.31, 0.31, 1), Color(1, 0.98, 0.98, 1)]
+"values": [Color(1, 0.98, 0.98, 1), Color(0, 0, 0, 1), Color(1, 0.98, 0.98, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rku1e"]
@@ -331,6 +356,7 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("6_ewbju")
 
 [node name="FlashRect" type="ColorRect" parent="HUD"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -350,8 +376,9 @@ offset_left = -142.0
 offset_right = 142.0
 offset_bottom = 23.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 16
-text = "Collect 5 Keys Before Time Runs Out!"
+theme_override_fonts/font = ExtResource("7_85qyi")
+theme_override_font_sizes/font_size = 21
+text = "Collect 5 Keys  AND  Check 5 CheckPonints  Before Time Runs Out!"
 
 [node name="MissionBg" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
@@ -394,28 +421,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -264.0
-offset_top = -94.5
-offset_right = 264.0
-offset_bottom = 94.5
+offset_left = -202.0
+offset_top = -99.0
+offset_right = 326.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 32
 text = "CONGRATULATIONS YOU SURVIED"
 
 [node name="Restart" type="Button" parent="HUD/Win"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -108.5
-offset_top = -38.5
-offset_right = 108.5
-offset_bottom = 38.5
+offset_left = -106.0
+offset_top = -40.0
+offset_right = 111.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
@@ -430,23 +460,26 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -162.5
-offset_right = 162.5
-offset_bottom = 45.0
+offset_left = -143.0
+offset_top = 4.0
+offset_right = 182.0
+offset_bottom = 49.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 32
 text = "THE CRIMSON CHASE"
 
 [node name="GameOver" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 modulate = Color(1, 1, 1, 0.5921569)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(6.0271705e-05, 6.0271705e-05, 6.0271705e-05, 1)
+color = Color(0.35257247, 4.4220127e-07, 1.4439226e-07, 1)
 
 [node name="Label" type="Label" parent="HUD/GameOver"]
 modulate = Color(1, 0.3, 0.3, 1)
@@ -462,6 +495,7 @@ offset_right = 162.5
 offset_bottom = 94.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 40
 text = "KILLED BY BERSERK"
 
@@ -478,6 +512,7 @@ offset_right = 104.0
 offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
@@ -491,6 +526,7 @@ offset_left = -203.5
 offset_right = 203.5
 offset_bottom = 55.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 40
 text = "THE CRIMSON CHASE"
 
@@ -614,7 +650,8 @@ offset_top = 53.0
 offset_right = 65.0
 offset_bottom = 76.0
 grow_horizontal = 2
-text = "              BOSS LEVEL !!! 
+theme_override_fonts/font = ExtResource("7_85qyi")
+text = "          BOSS LEVEL !!! 
 SURVIVE 30 SEC FROM BERSERK"
 
 [node name="B_timer" type="Label" parent="HUD"]
@@ -628,6 +665,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 31
 
 [node name="SafeZone" parent="." instance=ExtResource("5_wowpa")]
 position = Vector2(1326, 687)
@@ -720,6 +758,11 @@ position = Vector2(1569, 1146)
 [node name="AudioManager" parent="." instance=ExtResource("8_v158k")]
 
 [node name="WarningBoard" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.9757106, 0.34525856, 1, 1)
+position = Vector2(1066, 761)
+board_message = "Berserk can pass through walls !!!"
+
+[node name="WarningBoard8" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.9757106, 0.34525856, 1, 1)
 position = Vector2(1066, 761)
 board_message = "Berserk can pass through walls !!!"

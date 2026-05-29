@@ -15,8 +15,16 @@ var boss_active = false
 func _ready() -> void:
 	start_hunt()
 
+func reset() -> void:
+	current_phase = Phase.HUNT
+	hunt_timer = 150.0
+	boss_timer = 30.0
+	hunt_active = false
+	boss_active = false
+	AudioManager.reset_audio()
 
 func start_hunt() -> void:
+	reset()
 	hunt_active = true
 	current_phase = Phase.HUNT
 
@@ -62,6 +70,7 @@ func _hunt_complete() -> void:
 func begin_boss_mode() -> void:
 	if boss_active:
 		return
+	AudioManager.switch_to_boss_bgm()
 	current_phase = Phase.BOSS
 	boss_active = true
 	print("phase is :", current_phase)
@@ -71,6 +80,7 @@ func begin_boss_mode() -> void:
 
 
 func _boss_complete() -> void:
+	AudioManager.play_in_game_bgm()
 	boss_active = false
 	current_phase = Phase.END
 	emit_signal("game_complted")

@@ -32,11 +32,13 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if triggered or not body.is_in_group("player"):
 		return
+	%AnimationPlayer.play("charge")
 	player_inside = true
 	progress_bar.visible = true
 
 
 func _on_body_exited(body: Node2D) -> void:
+	%AnimationPlayer.pause()
 	if triggered or not body.is_in_group("player"):
 		return
 	player_inside = false
@@ -46,6 +48,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _complete() -> void:
+	AudioManager.play_checkpoint_sfx()
+	%AnimationPlayer.pause()
 	triggered = true
 	player_inside = false
 	progress_bar.visible = false

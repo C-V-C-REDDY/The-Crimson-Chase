@@ -5,6 +5,57 @@
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="2_ahul7"]
 [ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="3_wjprj"]
 
+[sub_resource type="Animation" id="Animation_v0v1k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(131.00002, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Berserk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(739.00006, 362)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pooring:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pooring:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137, 327)]
+}
+
 [sub_resource type="Animation" id="Animation_nmlck"]
 resource_name = "idle"
 loop_mode = 1
@@ -57,57 +108,6 @@ tracks/3/keys = {
 "values": [Vector2(137, 327), Vector2(137, 300), Vector2(137, 327)]
 }
 
-[sub_resource type="Animation" id="Animation_v0v1k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mc:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(131.00002, 178)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Berserk:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(739.00006, 362)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pooring:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.1, 0.15)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pooring:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(137, 327)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2vp"]
 _data = {
 &"RESET": SubResource("Animation_v0v1k"),
@@ -155,7 +155,7 @@ offset_top = 304.0
 offset_right = 224.0
 offset_bottom = 327.0
 text = "Pooring
-Companion of Maze 
+Companion of Mage 
 Follows Maze All The Time "
 
 [node name="Berserk" type="Sprite2D" parent="."]
@@ -195,6 +195,7 @@ offset_top = 146.0
 offset_right = 399.0
 offset_bottom = 195.0
 text = "MAGE
-Controls : Arrows and WASD"
+Lost In The Crimson maze
+Controls : Arrows "
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -6,6 +6,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icdkt"]
 size = Vector2(9, 36)
 
+[sub_resource type="Animation" id="Animation_6sjuq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bell:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.363323]
+}
+
 [sub_resource type="Animation" id="Animation_icdkt"]
 resource_name = "trap"
 loop_mode = 1
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "values": [4.363323, 5.061455, 4.363323]
 }
 
-[sub_resource type="Animation" id="Animation_6sjuq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bell:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4.363323]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5qptr"]
 _data = {
 &"RESET": SubResource("Animation_6sjuq"),
@@ -44,6 +44,7 @@ _data = {
 }
 
 [node name="BellTrap" type="Area2D"]
+rotation = 1.5707964
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_icdkt")

@@ -56,7 +56,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if body.name == "Player":
 		Global.is_player_safe = true
-		AudioManager.stop_berserk_walk()
+
 
 
 
@@ -66,5 +66,3 @@ func _on_body_exited(body: Node2D) -> void:
 		return
 	if body.name == "Player":
 		Global.is_player_safe = false
-	if not AudioManager.is_footstep_berserk_playing():
-		AudioManager.play_berserk_walk_sfx()
