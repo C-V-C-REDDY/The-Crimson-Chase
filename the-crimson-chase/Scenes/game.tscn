@@ -367,7 +367,6 @@ color = Color(1, 1, 1, 0)
 
 [node name="MissionLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
-visible = false
 modulate = Color(0.94, 0.1222, 0.1222, 1)
 anchors_preset = 5
 anchor_left = 0.5
@@ -378,7 +377,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("7_85qyi")
 theme_override_font_sizes/font_size = 21
-text = "Collect 5 Keys  AND  Check 5 CheckPonints  Before Time Runs Out!"
+text = "Collect 5 Keys  AND  Charge 5 CheckPoints Before Time Runs Out!"
 
 [node name="MissionBg" type="ColorRect" parent="HUD"]
 unique_name_in_owner = true
@@ -787,6 +786,11 @@ modulate = Color(0.39, 0.51000005, 0.75, 1)
 position = Vector2(1973, 545)
 board_message = "Beware of Invisible Walls "
 
+[node name="WarningBoard9" parent="." instance=ExtResource("11_o5yvi")]
+modulate = Color(0.39, 0.51000005, 0.75, 1)
+position = Vector2(2031, 1473)
+board_message = "Beware of Invisible Walls "
+
 [node name="WarningBoard6" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.79545844, 0.85, 0.19550002, 1)
 position = Vector2(1319, 497)
@@ -795,7 +799,7 @@ board_message = "Complete The Mission and Survive The Boss Level"
 [node name="WarningBoard7" parent="." instance=ExtResource("11_o5yvi")]
 modulate = Color(0.79545844, 0.85, 0.19550002, 1)
 position = Vector2(2094, 1301)
-board_message = "Stay Near Chaeck Point For 3 seconds To Charge It !"
+board_message = "Stay Near Check Point For 3 sec To Charge It !"
 
 [node name="Checkpoints" type="Node2D" parent="."]
 

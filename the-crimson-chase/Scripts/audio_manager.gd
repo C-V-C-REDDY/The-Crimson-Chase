@@ -56,6 +56,14 @@ func play_safe_zone_sfx():
 
 func play_berserk_laugh():
 	%Berserk_Skill_Sfx.play()
+	await get_tree().create_timer(3.0).timeout
+	%Berserk_Skill_Sfx.play()
+	await get_tree().create_timer(3.0).timeout
+	%Berserk_Skill_Sfx.play()
+	await get_tree().create_timer(3.0).timeout
+	%Berserk_Skill_Sfx.play()
+	await get_tree().create_timer(3.0).timeout
+	%Berserk_Skill_Sfx
 
 
 func play_stealth_sfx():

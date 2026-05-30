@@ -118,7 +118,7 @@ func teleport_to(pos :Vector2) -> void:
 
 
 func _on_boss_mode() -> void:
-	speed *= 1.6
+	speed *= 1.8
 	print("boss mode recieved by berserk")
 	print("berserk state is now :", current_state)
 	current_state = State.CHASING

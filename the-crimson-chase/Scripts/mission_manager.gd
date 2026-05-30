@@ -71,6 +71,7 @@ func begin_boss_mode() -> void:
 	if boss_active:
 		return
 	AudioManager.switch_to_boss_bgm()
+	AudioManager.play_berserk_laugh()
 	current_phase = Phase.BOSS
 	boss_active = true
 	print("phase is :", current_phase)

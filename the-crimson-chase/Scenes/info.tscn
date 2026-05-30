@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb0n6mtwufhtf"]
+[gd_scene load_steps=12 format=3 uid="uid://cb0n6mtwufhtf"]
 
 [ext_resource type="Script" uid="uid://c60rqkbpyau0j" path="res://Scripts/info.gd" id="1_ahul7"]
 [ext_resource type="Texture2D" uid="uid://dpett7s2p86p7" path="res://Assets/sprites/MC.png" id="1_qjrxf"]
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="2_ahul7"]
+[ext_resource type="FontFile" uid="uid://be4e7wqywc6x1" path="res://Assets/fount/MetalMania-Regular.ttf" id="2_vq2vp"]
 [ext_resource type="Texture2D" uid="uid://vels8kcfx1ja" path="res://Assets/sprites/Berserk.png" id="3_wjprj"]
+[ext_resource type="Texture2D" uid="uid://c18dru44nfnwg" path="res://Assets/sprites/bell.png" id="5_v0v1k"]
+[ext_resource type="Texture2D" uid="uid://bpn8dk71mh5yk" path="res://Assets/sprites/Checkpoint.png" id="6_vq2vp"]
+[ext_resource type="Texture2D" uid="uid://de7uc1gnfng4c" path="res://Assets/sprites/warning.png" id="7_ss1f6"]
 
 [sub_resource type="Animation" id="Animation_v0v1k"]
 length = 0.001
@@ -17,43 +21,91 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(131.00002, 178)]
+"values": [Vector2(103, 121)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Berserk:position")
+tracks/1/path = NodePath("Pooring:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(739.00006, 362)]
+"values": [Vector2(100, 242)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pooring:scale")
+tracks/2/path = NodePath("Berserk:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.1, 0.15)]
+"values": [Vector2(745.00006, 273.00003)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Pooring:position")
+tracks/3/path = NodePath("Sprite2D2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(137, 327)]
+"values": [Vector2(103, 402)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(109, 521)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.99999994, 0.28730667, 0.22523719, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5235988]
 }
 
 [sub_resource type="Animation" id="Animation_nmlck"]
@@ -69,43 +121,91 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(131.00002, 178), Vector2(131, 168), Vector2(131, 178)]
+"values": [Vector2(103, 121), Vector2(103, 110), Vector2(103, 121)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Berserk:position")
+tracks/1/path = NodePath("Pooring:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(739.00006, 362), Vector2(739, 352), Vector2(739, 362)]
+"values": [Vector2(100, 242), Vector2(100, 220), Vector2(100, 242)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pooring:scale")
+tracks/2/path = NodePath("Berserk:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.15), Vector2(0.15, 0.1)]
+"values": [Vector2(745.00006, 273.00003), Vector2(745, 250), Vector2(745.00006, 273.00003)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Pooring:position")
+tracks/3/path = NodePath("Sprite2D2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(103, 402)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(109, 521)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.99999994, 0.28730667, 0.22523719, 1), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(137, 327), Vector2(137, 300), Vector2(137, 327)]
+"values": [0.5235988, -0.5235988, 0.5235988]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2vp"]
@@ -116,6 +216,7 @@ _data = {
 
 [node name="INFO" type="Node"]
 script = ExtResource("1_ahul7")
+metadata/_edit_horizontal_guides_ = [-3.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -134,45 +235,48 @@ offset_left = -147.5
 offset_right = 147.5
 offset_bottom = 93.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_vq2vp")
 theme_override_font_sizes/font_size = 32
 text = "The Crimson Chase
            INFO"
 
 [node name="Mc" type="Sprite2D" parent="."]
-position = Vector2(131.00002, 178)
+position = Vector2(103, 121)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_qjrxf")
 
 [node name="Pooring" type="Sprite2D" parent="."]
-position = Vector2(137, 327)
-scale = Vector2(0.1, 0.15)
+position = Vector2(100, 242)
+scale = Vector2(0.15, 0.2)
 texture = ExtResource("2_ahul7")
 
 [node name="Label3" type="Label" parent="."]
 modulate = Color(1, 0.39, 0.39, 1)
-offset_left = 184.0
-offset_top = 304.0
-offset_right = 224.0
-offset_bottom = 327.0
+offset_left = 149.0
+offset_top = 219.0
+offset_right = 355.0
+offset_bottom = 294.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
 text = "Pooring
 Companion of Mage 
-Follows Maze All The Time "
+Follows Mage Through The Maze"
 
 [node name="Berserk" type="Sprite2D" parent="."]
-position = Vector2(739.00006, 362)
+position = Vector2(745.00006, 273.00003)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("3_wjprj")
 hframes = 4
 
 [node name="Label4" type="Label" parent="."]
 modulate = Color(1, 0.45882353, 0.49803922, 1)
-offset_left = 845.0
-offset_top = 198.0
-offset_right = 1084.0
-offset_bottom = 273.0
+offset_left = 863.0
+offset_top = 124.0
+offset_right = 1102.0
+offset_bottom = 227.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
+theme_override_font_sizes/font_size = 36
 text = "Berserk
-Owner Of The Crimson Maze
-and Wants to Kill The Introders"
+"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 1108.0
@@ -190,12 +294,59 @@ libraries = {
 
 [node name="Label2" type="Label" parent="."]
 modulate = Color(0.99150485, 0.5982564, 1, 1)
-offset_left = 181.0
-offset_top = 146.0
-offset_right = 399.0
-offset_bottom = 195.0
+offset_left = 148.0
+offset_top = 89.0
+offset_right = 366.0
+offset_bottom = 164.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
 text = "MAGE
-Lost In The Crimson maze
 Controls : Arrows "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(630, 400)
+rotation = 0.5235988
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_v0v1k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.99999994, 0.28730667, 0.22523719, 1)
+position = Vector2(103, 402)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_vq2vp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(109, 521)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_ss1f6")
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color(1, 0.00999999, 0.00999999, 1)
+offset_left = 159.0
+offset_top = 376.0
+offset_right = 325.0
+offset_bottom = 425.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
+text = "CheckPoint 
+Takes 3 sec to Charge"
+
+[node name="Label6" type="Label" parent="."]
+modulate = Color(1, 0.61, 0.61, 1)
+offset_left = 159.0
+offset_top = 496.0
+offset_right = 283.0
+offset_bottom = 519.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
+text = "Warning Boards"
+
+[node name="Label7" type="Label" parent="."]
+modulate = Color(0.72251534, 0, 0.12515476, 1)
+offset_left = 680.0
+offset_top = 376.0
+offset_right = 891.0
+offset_bottom = 425.0
+theme_override_fonts/font = ExtResource("2_vq2vp")
+text = "Bell Traps 
+Spawns Berserk If Triggered "
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
