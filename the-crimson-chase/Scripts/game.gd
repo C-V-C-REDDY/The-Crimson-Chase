@@ -5,42 +5,48 @@ var keys_collected = 0
 var keys_count = 0
 var pooring_count = 0
 var max_keys = 5
-var spawn_timer = 3.0
+var spawn_timer = 10.0
 var game_timer = 300.0
 var current_key = null
 var ember_speed_boost = 20.0
 var invincible = false
 @onready var camera = $Player/Camera2D
 var ember_pooring_scene = preload("res://Scenes/ember_pooring.tscn")
-var ember_timer = 60.0
+var ember_timer = 30.0
 var ember_elapsed = 0.0
 var toast_offset = 0
 var safe_spawn_points = []
 var used_positions = []
 var mission_timer = 150
 var mission_active = false
-var mission_start_delay = 5.0
+var mission_start_delay = 2.0
 var mission_elapsed = 0.0
 @onready var toast_label: Label = $HUD/ToastLabel
 
 
 func _ready() -> void:
+	MissionManager.reset()
+	MissionManager.start_hunt()
 	AudioManager.play_in_game_bgm()
 	for point in %SpawnPonits.get_children():
 		safe_spawn_points.append(point.global_position)
 	spawn_key()
 	AudioManager.play_berserk_walk_sfx()
-	
+	MissionManager.game_complted.connect(_on_game_complete)
+
+
+func _on_game_complete() -> void:
+	win()
+
 
 func _process(delta: float) -> void:
+	%B_timer.text = str(int(MissionManager.boss_timer))
 	game_timer -= delta
 	spawn_timer -= delta
 	ember_elapsed += delta
 	if ember_elapsed >= ember_timer:
 		ember_elapsed = 0.0
 		_spawn_ember_pooring()
-	#if game_timer <= 0:
-		#win()
 	if not mission_active:
 		mission_start_delay -= delta
 		if mission_start_delay <= 0:
@@ -54,28 +60,25 @@ func _process(delta: float) -> void:
 		mission_elapsed += delta
 		var time_left = int(mission_timer - mission_elapsed)
 		%TimerLabel.text = str(time_left)
-		if time_left <= 0 and keys_count < max_keys:
+		if time_left <= 0 and keys_count < max_keys and Global.checkpoints_collected < 5:
 			mission_failed()
 			%TimerLabel.visible = false
-	if keys_count >= max_keys and mission_active:
+	if keys_count >= max_keys and mission_active and Global.checkpoints_collected >= 5:
 		mission_complete()
 		%TimerLabel.visible = false
 			
 	if spawn_timer <= 0:
 		spawn_key()
+	%ck_points.text = "X" + str(Global.checkpoints_collected)
 
 func mission_complete():
 	mission_active = false
 	Global.mission_active = false
 	Global.player_frozen = false
 	%MissionLabel.text = "Mission Complete!!"
-	%TimerLabel.text = "Congratulations"
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2.0).timeout
 	%MissionLabel.visible = false
-	%MissionBg.visible = false
-	win()
-	#%TimerLabel.visible = false
-	#print("Mission COmplete")
+	MissionManager._hunt_complete()
 
 
 func mission_failed():
@@ -113,23 +116,25 @@ func spawn_key():
 	call_deferred("add_child", key)
 	current_key = key
 	key.keys_collected.connect(_on_key_collected)
-	spawn_timer = 3.0
+	spawn_timer = 10.0
 
 func _on_key_collected():
 	keys_count += 1
 	%Keys_count.text = "X" + str(keys_count)
-	#if keys_count >= 2 and mission_active:
-		#mission_complete()
 
 
 func win():
+	%B_timer.visible = false
 	get_tree().paused = true
+	AudioManager.play_in_game_bgm()
 	%Win.visible = true
 	%LivesAnim.play("Win")
 
 
 
 func game_over():
+	%B_timer.visible = true
+	AudioManager.play_in_game_bgm()
 	get_tree().paused = true
 	%GameOver.visible = true
 	%LivesAnim.play("game_over")
@@ -137,12 +142,14 @@ func game_over():
 
 
 func _on_restart_pressed() -> void:
+	AudioManager.play_tap_sfx()
 	get_tree().paused = false
 	Global.reset()
 	get_tree().reload_current_scene()
 
 
 func _on_lose_restart_pressed() -> void:
+	AudioManager.play_tap_sfx()
 	get_tree().paused = false
 	Global.reset()
 	get_tree().reload_current_scene()
@@ -210,6 +217,8 @@ func _random_floor_position() -> Vector2:
 
 
 func apply_stealth():
+	if MissionManager.boss_active:
+		return
 	show_toast("Stealth Mode!")
 	Global.is_player_safe = true
 	await get_tree().create_timer(10.0).timeout
@@ -220,7 +229,7 @@ func apply_speed_boost():
 	show_toast("Speed Boost!")
 	var player = get_tree().get_first_node_in_group("player")
 	var original_speed = player.speed
-	player.speed = original_speed * 2.0
+	player.speed = original_speed * 1.5
 	await get_tree().create_timer(10.0).timeout
 	player.speed = original_speed
 
@@ -247,8 +256,12 @@ func show_toast(message: String):
 	label.queue_free()
 	toast_offset -= 25
 
+var toast_active = false
 
 func warning_toast(message: String):
+	if toast_active:
+		return
+	toast_active = true
 	toast_label.text = ""
 	toast_label.visible = true
 	for character in message:
@@ -256,3 +269,4 @@ func warning_toast(message: String):
 		await get_tree().create_timer(0.05).timeout
 	await get_tree().create_timer(3).timeout
 	toast_label.visible = false
+	toast_active = false

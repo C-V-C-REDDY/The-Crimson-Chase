@@ -6,6 +6,7 @@ var shift_interval: float = 30.0
 var warning_time: float = 5.0
 var shift_timer: float = 0.0
 var warning_given: bool = false
+var monitering = true
 
 var spawn_positions: Array = [
 	Vector2(250, 200),
@@ -18,6 +19,14 @@ var spawn_positions: Array = [
 	Vector2(500, 450),
 	Vector2(750, 450)
 ]
+
+
+func _ready() -> void:
+	MissionManager.boss_mode_started.connect(_on_boss_mode)
+
+func _on_boss_mode() -> void:
+	monitering = false
+
 
 func _process(delta: float) -> void:
 	shift_timer += delta
@@ -43,15 +52,17 @@ func shift_zone():
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if not monitering:
+		return
 	if body.name == "Player":
 		Global.is_player_safe = true
-		AudioManager.stop_berserk_walk()
+
 
 
 
 
 func _on_body_exited(body: Node2D) -> void:
+	if not monitering:
+		return
 	if body.name == "Player":
 		Global.is_player_safe = false
-	if not AudioManager.is_footstep_berserk_playing():
-		AudioManager.play_berserk_walk_sfx()

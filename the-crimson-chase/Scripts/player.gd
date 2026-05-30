@@ -1,10 +1,9 @@
 extends CharacterBody2D
 @onready var anim_player: AnimationPlayer = $PlayerAnimation
 @onready var pooring: Node2D = $"../Pooring"
-#@onready var mc_wals_sfx: AudioStreamPlayer = %MC_Wals_Sfx
 
 
-var speed = 200.0
+var speed = 300.0
 
 func _ready() -> void:
 	anim_player.play("idle")
@@ -26,6 +25,11 @@ func _physics_process(_delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * speed
 	move_and_slide()
+	
+	if direction.x > 0:
+		%Sprite2D.flip_h = true
+	else:
+		%Sprite2D.flip_h = false
 
 
 func _process(_delta: float) -> void:

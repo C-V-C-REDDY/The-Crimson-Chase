@@ -42,7 +42,7 @@ _data = {
 &"warning": SubResource("Animation_jwd3t")
 }
 
-[node name="SafeZone" type="Area2D"]
+[node name="SafeZone" type="Area2D" groups=["safe_zone"]]
 script = ExtResource("1_jwd3t")
 
 [node name="ColorRect" type="ColorRect" parent="."]

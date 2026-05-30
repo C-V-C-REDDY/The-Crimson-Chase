@@ -3,6 +3,33 @@
 [ext_resource type="Texture2D" uid="uid://b2eluw0rsoga8" path="res://Assets/sprites/Pooring.png" id="1_blb2k"]
 [ext_resource type="Script" uid="uid://b5klfcg0bayeo" path="res://Scripts/ember_pooring.gd" id="1_de3lm"]
 
+[sub_resource type="Animation" id="Animation_bwn7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.07, 0.07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_de3lm"]
 resource_name = "idl"
 length = 1.5
@@ -32,33 +59,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.7564494, 0.3984194, 0.9096966, 1), Color(0.38858473, 0.84786344, 0.8660078, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_bwn7l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.07, 0.07)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qg7mw"]
 _data = {
 &"RESET": SubResource("Animation_bwn7l"),
@@ -68,7 +68,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_nf5if"]
 radius = 12.0415945
 
-[node name="EmberPooring" type="Node2D"]
+[node name="EmberPooring" type="Node2D" groups=["elite_pooring"]]
 script = ExtResource("1_de3lm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
